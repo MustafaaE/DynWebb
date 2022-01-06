@@ -14,13 +14,12 @@
 		<div class="register-wrapper">
 		<div class="register-block">
 		<h3 class="register-title">Create an account</h3>
-			<form action="">
-			<input type="email" placeholder="Enter your email"/>
-			<input type="username" placeholder="Enter your username"/>
-			<input type="password" placeholder="Enter your password" />
-			<input type="submit" value="Create my account"/>
-			<a href ="login.php"> Back</a>
-			</form>
+		<form action="../interface/register_user.php" method="POST">
+        <input type="text" placeholder="email" name="email" required>
+        <input type="text" placeholder="username" name="username" required>
+        <input type="text" placeholder="password" name="password" required>
+        <input type="submit">
+		<a href ="login.php"> Back</a>
 		</div>
 		</div>
 	</section>
@@ -29,3 +28,4 @@
 	</footer>
 </body>
 </html>
+
