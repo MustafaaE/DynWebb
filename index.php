@@ -7,11 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-<<<<<<< HEAD
 <span>test</span>    
-=======
     <p>hej</p>
     
->>>>>>> main
 </body>
 </html>
