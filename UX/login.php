@@ -15,10 +15,10 @@
         <h2>Login</h2>
         <form>
           <p>
-            <input type="email" placeholder="Email" required>
+            <input type="username" placeholder="username" name="username" required>
           </p>
           <p>
-            <input type="password" placeholder="Password" required>
+            <input type="password" placeholder="Password" name="password" required>
           </p>
           <p>
             <input class="btn" type="submit" value="Sign In" />
