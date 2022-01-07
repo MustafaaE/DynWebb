@@ -1,7 +1,9 @@
 <?php 
+session_start();
 require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
+isUserLoggedIn();
 ?>
 
 
