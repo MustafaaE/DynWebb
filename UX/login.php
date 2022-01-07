@@ -13,9 +13,9 @@
     <div class="col-left">
       <div class="login-form">
         <h2>Login</h2>
-        <form>
+        <form action="../interface/login_user.php" method="post">
           <p>
-            <input type="username" placeholder="username" name="username" required>
+            <input type="email" placeholder="email" name="email" required>
           </p>
           <p>
             <input type="password" placeholder="Password" name="password" required>

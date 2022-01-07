@@ -11,6 +11,6 @@ function redirectTo($url = null)
 function isUserLoggedIn()
 {
     if(!isset($_SESSION['user'])){
-        redirectTo('./login.php');
+        redirectTo('../UX/login.php');
     }
 }

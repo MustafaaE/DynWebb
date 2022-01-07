@@ -188,5 +188,4 @@ isUserLoggedIn();
     </footer>
 </section>
 </body>
-
 </html>
