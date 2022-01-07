@@ -12,4 +12,3 @@ function connectToDB()
     return $pdo;
 }
 
-connectToDB();

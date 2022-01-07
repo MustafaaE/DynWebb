@@ -13,12 +13,12 @@
     <div class="col-left">
       <div class="login-form">
         <h2>Login</h2>
-        <form>
+        <form action="../interface/login_user.php" method="post">
           <p>
-            <input type="email" placeholder="Email" required>
+            <input type="email" placeholder="email" name="email" required>
           </p>
           <p>
-            <input type="password" placeholder="Password" required>
+            <input type="password" placeholder="Password" name="password" required>
           </p>
           <p>
             <input class="btn" type="submit" value="Sign In" />
