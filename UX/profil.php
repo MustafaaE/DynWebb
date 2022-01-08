@@ -2,6 +2,7 @@
 require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
+isUserLoggedIn();
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +25,10 @@ require_once "../interface/connection.php";
 
     </div>
 
+    <?php  print_r($_SESSION['user']['user_id']); ?>
     <div class="profile-user-settings">
 
-      <h1 class="profile-user-name">jane</h1>
+      <h1 class="profile-user-name"><?php print_r($_SESSION['user']['username']); ?> </h1>
       
     </div>
           <button class="btn-follow">Följ</button>

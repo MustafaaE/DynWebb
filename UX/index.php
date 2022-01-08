@@ -4,6 +4,8 @@ require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
 isUserLoggedIn();
+
+print_r($_SESSION['user']['user_id']);
 ?>
 
 
@@ -28,7 +30,7 @@ isUserLoggedIn();
                         <a href="#" class="post__avatar">
                             <img src="../assets/bork.jpg" alt="User Picture">
                         </a>
-                        <a href="#" class="post__user">Jane Doe</a>
+                        <a href="#" class="post__user"> Posters id name </a>
                     </div>
                 </div>
 
@@ -56,7 +58,7 @@ isUserLoggedIn();
                             <a href="#" class="post__likes-avatar">
                                 <img src="../assets/bork.jpg" alt="User Picture">
                             </a>
-                            <span>Liked by <a class="post__name--underline" href="#">Armin</a> and <a href="#">73 others</a></span>
+                            <span>Liked by <a class="post__name--underline" href="#"><?php print_r($_SESSION['user']['username']); ?> </a> and <a href="#">73 others</a></span>
                         </div>
                         <div class="post__description">
                             <span>
@@ -119,12 +121,12 @@ isUserLoggedIn();
         </section>
         <section class="side-menu">
             <div class="side-menu__user-profile">
-                <a href="https://github.com/leocosta1" target="_blank" class="side-menu__user-avatar">
+                <a href="../UX/profil.php" target="_blank" class="side-menu__user-avatar">
                     <img src="../assets/bork.jpg" alt="User Picture">
                 </a>
                 <div class="side-menu__user-info">
-                    <a href="../UX/profil.php" target="_blank">Jane Doe</a>
-                    <span>Jane Doe</span>
+                    <a href="../UX/profil.php" target="_blank"><?php print_r($_SESSION['user']['username']); ?> </a>
+                    <span><?php print_r($_SESSION['user']['username']); ?> </span>
                 </div>
                 <button class="side-menu__user-button">Switch</button>
             </div>

@@ -12,8 +12,8 @@
     <nav class="header-nav">
         <li><a href="../UX/index.php">Home</a></li>
         <li><a href="../UX/profil.php">Profile</a></li>
-        <li><a href="../UX/">Upload</a></li>
-        <li><a href="../UX/login.php">Log out</a></li>
+        <li><a href="../upload/upload_index.php">Upload</a></li>
+        <li><a href="../interface/logout.php">Log out</a></li>
     </nav>
 
     <p></p>Search</p>

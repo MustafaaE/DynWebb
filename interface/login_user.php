@@ -16,9 +16,9 @@ $user = $stmt->fetch();
 echo $user;
 
 if(!password_verify($password, $user['password'])) {
-  redirectTo('../dynwebb/UX/login.php');
+  redirectTo('UX/login.php');
 };
 
 $_SESSION['user'] = $user;
 echo $_SESSION['user'];
-redirectTo('../dynwebb/UX/index.php');
+redirectTo('UX/index.php');
