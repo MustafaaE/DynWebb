@@ -1,11 +1,13 @@
 <?php 
-session_start();
 require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
 isUserLoggedIn();
-print_r(['user']);
-print_r($_SESSION['user']['user_id']);
+
+ $user_id =$_SESSION['user']['user_id'];
+ $username = $_SESSION['user']['username'];
+ print_r($user_id);
+ print_r($username);
 ?>
 
 

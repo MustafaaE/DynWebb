@@ -15,7 +15,7 @@
         <h2>Login</h2>
         <form action="../interface/login_user.php" method="POST">
           <p>
-            <input type="email" placeholder="email" name="email" required>
+            <input type="text" placeholder="username" name="username" required>
           </p>
           <p>
             <input type="password" placeholder="Password" name="password" required>

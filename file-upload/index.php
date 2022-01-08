@@ -1,5 +1,4 @@
 <?php 
-session_start() ;
 require '../components/header.php';
     ?>
 <!DOCTYPE html>
