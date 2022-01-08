@@ -1,6 +1,7 @@
 <?php 
 require_once "../interface/connection.php";
 require_once "../components/methods.php";
+$user_id =$_SESSION['user']['user_id'];
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -13,6 +14,10 @@ $stmt -> execute();
 if(!empty($_GET['search']))
 {
     $search = htmlspecialchars($_GET['search']);
+}
+
+function get_all() {
+    /* DETTA SKA HÄMTA DINA EGNA BILDER från database, HUR MÅNGA FÖLJARE MAN HAR, HUR MÅNGA MAN FÖLJER */
 }
 
 ?>
@@ -31,7 +36,7 @@ if(!empty($_GET['search']))
     <div id="header-cont">
         <nav class="header-nav">
             <li><a href="../UX/index.php">Home</a></li>
-            <li><a href="../UX/profil.php">Profile</a></li>
+            <li><a href="../UX/profil.php?id=<?php echo $user_id; ?> "> Profile </a></li>
             <li><a href="../file-upload/index.php">Upload</a></li>
             <li><a href="../interface/logout.php">Log out</a></li>
         </nav>

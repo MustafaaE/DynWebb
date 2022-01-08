@@ -16,6 +16,12 @@ isUserLoggedIn();
 </head>
 <body>
 <header>
+
+<div>
+  <?php 
+  get_all();
+  ?>
+</div>
 <div class="container">
   <div class="profile">
 
@@ -24,11 +30,16 @@ isUserLoggedIn();
       <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
 
     </div>
-
+    <?php  showAllAttributes(); ?>
     <?php  print_r($_SESSION['user']['user_id']); ?>
+    <?php
+     $variabel = $_GET['user_id'];
+    
+    ?>
     <div class="profile-user-settings">
 
       <h1 class="profile-user-name"><?php print_r($_SESSION['user']['username']); ?> </h1>
+    
       
     </div>
           <button class="btn-follow">Följ</button>
