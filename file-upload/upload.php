@@ -2,10 +2,12 @@
 require '../interface/connection.php';
 require '../components/methods.php';
 
-session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+
+
 
 $pdo = connectToDB();
 
@@ -16,6 +18,7 @@ $targetDirectory = $currentDirectory . $uploadDirectory;
 
 $errors = [];
 
+$user_id =$_SESSION['user']['user_id'];
 
 
 $fileName = $_FILES['image_file']['name'];
@@ -30,10 +33,11 @@ $fileTypeAllowed = ['jpg','png'];
 $uploadPath = $targetDirectory . basename($fileName);
 
 $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
-$statement = $pdo ->prepare('insert into posts(image_file,description)
-values (:image_file,:description)');
+$statement = $pdo ->prepare('insert into posts(image_file,description,user_id)
+values (:image_file,:description,:user_id)');
 $statement ->bindValue('image_file', $uploadPath);
 $statement ->bindValue('description', $description);
+$statement ->bindValue('user_id', $user_id);
 
 
 

@@ -22,7 +22,7 @@ $statement ->bindValue('email', $email);
 
 try {
     $statement->execute();
-    header("Location: ../UX/index.php");
+    header("Location: ../UX/login.php");
 } catch (PDOException $e) {
     var_dump($e ->getMessage());
 }

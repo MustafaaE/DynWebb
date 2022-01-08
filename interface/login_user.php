@@ -6,12 +6,12 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_EMAIL);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 $pdo = connectToDB();
 
-$stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email'); 
-$stmt->execute(['email' => $email]);
+$stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username'); 
+$stmt->execute(['username' => $username]);
 $user = $stmt->fetch();
 
 
