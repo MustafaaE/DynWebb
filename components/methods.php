@@ -4,7 +4,7 @@ session_start();
 function redirectTo($url = null)
 {
     $url = $url ?? '';
-    header("Location: http://localhost/grupparbete_dynweb/DynWebb/$url");
+    header("Location: http://localhost/DynWebb/$url");
     exit;
 }
 
