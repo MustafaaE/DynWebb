@@ -1600,10 +1600,9 @@ img {
 }
 
 /* * * * * Header CSS * * * * */
-<<<<<<< HEAD
 .header-nav {
   position: relative;
-=======
+}
 #header-cont{
   position: relative;
   padding-top: 2rem;
@@ -1612,7 +1611,6 @@ img {
 }
 
 .header-nav {
->>>>>>> origin/Tova
   display: flex;
   justify-content: space-evenly;
   list-style: none;
