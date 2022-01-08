@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php 
+session_start() ;
+require '../components/header.php';
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +23,10 @@
     <form enctype="multipart/form-data"  action="./upload.php" method="post">
         <div>
             <label for="file">Select a file:</label>
-            <input type="file" id="file" name="my_file"/>
+            <input type="file" id="file" name="image_file"/>
+            <label for="description">Write a description:</label>
+            <textarea row="5" cols="50" name="description"> </textarea>
+            
         </div>
         <div>
             <button type="submit">Upload</button>

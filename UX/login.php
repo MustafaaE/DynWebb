@@ -13,11 +13,7 @@
     <div class="col-left">
       <div class="login-form">
         <h2>Login</h2>
-<<<<<<< HEAD
         <form action="../interface/login_user.php" method="POST">
-=======
-        <form action="../interface/login_user.php" method="post">
->>>>>>> origin/Tova
           <p>
             <input type="email" placeholder="email" name="email" required>
           </p>

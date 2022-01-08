@@ -1263,11 +1263,7 @@ img {
   max-width: 290px;
   position: fixed;
   left: 50%;
-<<<<<<< HEAD
-  top: 84px;
-=======
   top: 100px;
->>>>>>> origin/Tova
   transform: translateX(calc(-50% + 322px));
 
   display: none;
@@ -1615,8 +1611,6 @@ img {
   justify-content: space-evenly;
   list-style: none;
 }
-<<<<<<< HEAD
-=======
 
 .header-nav a{
   text-decoration: none;
@@ -1771,4 +1765,3 @@ img {
     font-weight: 600;
   }
 }
->>>>>>> origin/Tova

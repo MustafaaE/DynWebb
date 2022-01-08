@@ -17,9 +17,10 @@ $user = $stmt->fetch();
 
 if(!password_verify($password, $user['password'])) {
   redirectTo('UX/login.php');
-} else {
-  $_SESSION['user'] = $user;
+};
+
+ $_SESSION['user'] = $user;
 echo $_SESSION['user'];
 redirectTo('UX/index.php');
-}
+
 

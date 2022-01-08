@@ -32,8 +32,8 @@ if(!empty($_GET['search']))
         <nav class="header-nav">
             <li><a href="../UX/index.php">Home</a></li>
             <li><a href="../UX/profil.php">Profile</a></li>
-            <li><a href="../UX/upload.php">Upload</a></li>
-            <li><a href="../UX/login.php">Log out</a></li>
+            <li><a href="../file-upload/index.php">Upload</a></li>
+            <li><a href="../interface/logout.php">Log out</a></li>
         </nav>
 
         <form action="#" method="get">
