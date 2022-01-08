@@ -13,7 +13,7 @@
     <div class="col-left">
       <div class="login-form">
         <h2>Login</h2>
-        <form action="../interface/login_user.php" method="post">
+        <form action="../interface/login_user.php" method="POST">
           <p>
             <input type="email" placeholder="email" name="email" required>
           </p>

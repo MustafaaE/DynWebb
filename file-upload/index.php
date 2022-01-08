@@ -1,11 +1,7 @@
 <?php 
-require_once "../components/header.php";
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-?>
-
+session_start() ;
+require '../components/header.php';
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +20,13 @@ error_reporting(E_ALL);
         <?php endif; ?>
     </div>
 
-    <form enctype="multipart/form-data" action="./upload.php" method="post">
+    <form enctype="multipart/form-data"  action="./upload.php" method="post">
         <div>
             <label for="file">Select a file:</label>
-            <input type="file" id="file" name="my_file"/>
+            <input type="file" id="file" name="image_file"/>
+            <label for="description">Write a description:</label>
+            <textarea row="5" cols="50" name="description"> </textarea>
+            
         </div>
         <div>
             <button type="submit">Upload</button>

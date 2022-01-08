@@ -4,7 +4,7 @@ require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
 isUserLoggedIn();
-
+print_r(['user']);
 print_r($_SESSION['user']['user_id']);
 ?>
 
@@ -181,13 +181,12 @@ print_r($_SESSION['user']['user_id']);
                     </div>
                 </div>
         </section>
-    </main>
-<section>
+        <section>
     <footer>
-        <?php 
-        require_once "../components/footer.php";
-        ?>
+
     </footer>
 </section>
-</body>
+    </main>
+
+</body> 
 </html>

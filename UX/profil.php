@@ -277,11 +277,7 @@ isUserLoggedIn();
 </div>
 <!-- End of container -->
 
-<footer>
-<?php 
-require_once "../components/footer.php";
-?>
-</footer>
+
 </main>
 </body>
 </html>

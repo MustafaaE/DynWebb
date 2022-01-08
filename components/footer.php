@@ -4,152 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Footer</title>
 </head>
 <body>
  <!-- Site footer -->
- <footer class="section bg-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="">
-                        <h6 class="footer-heading text-uppercase text-white">Information</h6>
-                        <ul class="list-unstyled footer-link mt-4">
-                            <li><a href="">Pages</a></li>
-                            <li><a href="">Our Team</a></li>
-                            <li><a href="">Feuchers</a></li>
-                            <li><a href="">Pricing</a></li>
-                        </ul>
-                    </div>
-                </div>
+ <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6>About</h6>
+            <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative  to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+          </div>
 
-                <div class="col-lg-3">
-                    <div class="">
-                        <h6 class="footer-heading text-uppercase text-white">Ressources</h6>
-                        <ul class="list-unstyled footer-link mt-4">
-                            <li><a href="">Monitoring Grader </a></li>
-                            <li><a href="">Video Tutorial</a></li>
-                            <li><a href="">Term &amp; Service</a></li>
-                            <li><a href="">Zeeko API</a></li>
-                        </ul>
-                    </div>
-                </div>
+          <div class="col-xs-6 col-md-3">
+            <h6>Categories</h6>
+            <ul class="footer-links">
+              <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+              <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+              <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+              <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+              <li><a href="http://scanfcode.com/category/android/">Android</a></li>
+              <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+            </ul>
+          </div>
 
-                <div class="col-lg-2">
-                    <div class="">
-                        <h6 class="footer-heading text-uppercase text-white">Help</h6>
-                        <ul class="list-unstyled footer-link mt-4">
-                            <li><a href="">Sign Up </a></li>
-                            <li><a href="">Login</a></li>
-                            <li><a href="">Terms of Services</a></li>
-                            <li><a href="">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="">
-                        <h6 class="footer-heading text-uppercase text-white">Contact Us</h6>
-                        <p class="contact-info mt-4">Contact us if need help withanything</p>
-                        <p class="contact-info">+01 123-456-7890</p>
-                        <div class="mt-5">
-                            <ul class="list-inline">
-                                <li class="list-inline-item"><a href="#"><i class="fab facebook footer-social-icon fa-facebook-f"></i></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fab twitter footer-social-icon fa-twitter"></i></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fab google footer-social-icon fa-google"></i></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fab apple footer-social-icon fa-apple"></i></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+          <div class="col-xs-6 col-md-3">
+            <h6>Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="http://scanfcode.com/about/">About Us</a></li>
+              <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+              <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+              <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+              <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+            </ul>
+          </div>
         </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
+         <a href="#">Scanfcode</a>.
+            </p>
+          </div>
 
-        <div class="text-center mt-5">
-            <p class="footer-alt mb-0 f-14">2019 © Anup, All Rights Reserved</p>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+              <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+            </ul>
+          </div>
         </div>
-    </footer>
+      </div>
+</footer>
     
-<style>
-  /* ********** */
-/* FOOTER */
-/* ********* */
-.bg-footer {
-    background-color: #33383c;
-    padding: 50px 0 30px;
-}
-.footer-heading {
-    letter-spacing: 2px;
-}
-
-.footer-link a {
-    color: #acacac;
-    line-height: 40px;
-    font-size: 14px;
-    transition: all 0.5s;
-}
-
-.footer-link a:hover {
-    color: #1bbc9b;
-}
-
-.contact-info {
-    color: #acacac;
-    font-size: 14px;
-}
-
-.footer-social-icon {
-    font-size: 15px;
-    height: 34px;
-    width: 34px;
-    line-height: 34px;
-    border-radius: 3px;
-    text-align: center;
-    display: inline-block;
-}
-
-.facebook {
-    background-color: #4e71a8;
-    color: #ffffff;
-}
-
-.twitter {
-    background-color: #55acee;
-    color: #ffffff;
-}
-
-.google {
-    background-color: #d6492f;
-    color: #ffffff;
-}
-
-.apple {
-    background-color: #424041;
-    color: #ffffff;
-}
-
-.footer-alt {
-    color: #acacac;
-}
-
-.footer-heading {
-    position: relative;
-    padding-bottom: 12px;
-}
-
-.footer-heading:after {
-    content: '';
-    width: 25px;
-    border-bottom: 1px solid #FFF;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    display: block;
-    border-bottom: 1px solid #1bbc9b;
-}
-
-</style>
-
 </body>
 </html>

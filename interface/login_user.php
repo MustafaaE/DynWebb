@@ -1,6 +1,6 @@
 <?php 
-require_once "../interface/connection.php";
-require_once "../components/methods.php";
+require 'connection.php';
+require '../components/methods.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -13,12 +13,14 @@ $pdo = connectToDB();
 $stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email'); 
 $stmt->execute(['email' => $email]);
 $user = $stmt->fetch();
-echo $user;
+
 
 if(!password_verify($password, $user['password'])) {
   redirectTo('UX/login.php');
 };
 
-$_SESSION['user'] = $user;
+ $_SESSION['user'] = $user;
 echo $_SESSION['user'];
 redirectTo('UX/index.php');
+
+
