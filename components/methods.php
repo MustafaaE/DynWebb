@@ -42,16 +42,26 @@ function showAllAttributes() {
 
 } 
 
-function test() {
-
+function following() {
     $pdo = connectToDB();
-    $stmt = $pdo->prepare('SELECT image_file FROM posts WHERE user_id = :id'); 
+    $stmt = $pdo->prepare('SELECT follow_id FROM following WHERE follow_id = :id'); 
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_CLASS);
-    var_dump($results);
+    $get = $stmt->fetchAll();
+    foreach($get as $following){
+     $follow = $following['follow_id'];
+     print_r($follow);
+    }
+}
 
-
-
-
+function followers() {
+    $pdo = connectToDB();
+    $stmt = $pdo->prepare('SELECT follower_id FROM following WHERE follower_id = :id'); 
+    $stmt->bindParam(':id', $_GET['id']);
+    $stmt->execute();
+    $get = $stmt->fetchAll();
+    foreach($get as $followers){
+     $follows = $followers['follower_id'];
+     print_r($follows);
+    }
 }
