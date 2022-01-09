@@ -15,7 +15,8 @@ function isUserLoggedIn()
     }
 }
 
-function show_index_page_user() {
+function show_index_page_user()
+{
     $pdo = connectToDB();
     $statement = $pdo->prepare('SELECT id, /* images, usernames, något mer  */ FROM /* Någonstans */');
     $statement->execute();

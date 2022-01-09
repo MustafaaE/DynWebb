@@ -36,30 +36,33 @@ if(!empty($_GET['search']))
             <li><a href="../interface/logout.php">Log out</a></li>
         </nav>
 
-        <form action="#" method="get">
+        <form action="" method="get">
                 <input id="search" type="text" name="search" placeholder="Search">
                 <input id="submit" type="submit" value="🔍">
         </form>
     </div>
 <?php
+if(!empty($_GET['search']))
+{
+    echo <<<TABLEROW
+    <table>
+        <tr>
+            <th>Users</th>
+        </tr>
+TABLEROW;
+
     while($result = $stmt -> fetch())
     {
-        if(!empty($_GET['search']))
+        if(strpos($result['username'], $search) !== false)
         {
-            if(strpos($result['username'], $search) !== false)
-            {
-                echo <<<TABLEROW
-                <table>
-                    <tr>
-                        <th>Users</th>
-                    </tr>
-
-                    <tr>
-                        <td>{$result['username']}</td>
-                    </tr>
-                </table>
-                TABLEROW;
-            }
+            echo <<<TABLEROW
+                <tr>
+                    <td><a href="../UX/profil.php?username={$result['username']}&user_id={$result['user_id']}">{$result['username']}</a></td>
+                </tr>
+            </table>
+            TABLEROW;
         }
     }
+}
+
 ?>

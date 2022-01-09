@@ -3,49 +3,39 @@ require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
 isUserLoggedIn();
+
+$pdo = connectToDB();
+
+$stmt = $pdo->prepare("SELECT * FROM users");
+$stmt -> execute();
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Profile Page</title>
-</head>
-<body>
 <header>
-<div class="container">
-  <div class="profile">
+  <div class="container">
+    <div class="profile">
 
-    <div class="profile-image">
+        <div class="profile-image">
+          <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
+        </div>
 
-      <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
+        <div class="profile-user-settings">
+          <h1 class="profile-user-name"></h1>
+        </div>
 
+        <button class="btn-follow">Follow</button>
+        <buttuon class="btn-hide" hidden>Unfollow</buttuon>
+
+        <div class="profile-stats">
+          <ul>
+            <li><span class="profile-stat-count">188</span> followers</li>
+            <li><span class="profile-stat-count">206</span> following</li>
+          </ul>
+        </div>
     </div>
-
-    <?php  print_r($_SESSION['user']['user_id']); ?>
-    <div class="profile-user-settings">
-
-      <h1 class="profile-user-name"><?php print_r($_SESSION['user']['username']); ?> </h1>
-      
-    </div>
-          <button class="btn-follow">Följ</button>
-          <buttuon class="btn-hide" hidden>avfölj</buttuon>
-    <div class="profile-stats">
-      <ul>
-        <li><span class="profile-stat-count">188</span> followers</li>
-        <li><span class="profile-stat-count">206</span> following</li>
-      </ul>
-    </div>
-
+    <!-- End of profile section -->
   </div>
-  <!-- End of profile section -->
-
-</div>
 <!-- End of container -->
-
 </header>
 
 <main>
@@ -279,5 +269,16 @@ isUserLoggedIn();
 
 
 </main>
+<script>
+const user = document.querySelector('.profile-user-name');
+
+  let url_string = window.location;
+  let url = new URL(url_string);
+  let name = url.searchParams.get("username");
+  let id = url.searchParams.get("user_id");
+
+user.innerHTML = name;
+
+</script>
 </body>
 </html>
