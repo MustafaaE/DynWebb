@@ -30,7 +30,7 @@ isUserLoggedIn();
                 <div class="post__header">
                     <div class="post__profile">
                         <a href="#" class="post__avatar">
-                            <img src="../assets/bork.jpg" alt="User Picture">
+                            <img src="../assets/instagram-default-icon.png" alt="User Picture">
                         </a>
                         <a href="#" class="post__user"> Posters id name </a>
                     </div>
@@ -75,10 +75,10 @@ isUserLoggedIn();
             <article class="post">
                 <div class="post__header">
                     <div class="post__profile">
-                        <a href="#" class="post__avatar">
-                            <img src="../assets/bork.jpg" alt="User Picture">
+                        <a href="../UX/profil.php?id=<?php echo $user_id; ?> " class="post__avatar">
+                            <img src="../assets/instagram-default-icon.png" alt="User Picture">
                         </a>
-                        <a href="#" class="post__user">usernick4</a>
+                        <a href="#" class="post__user">Username</a>
                     </div>
                 </div>
 
@@ -123,8 +123,8 @@ isUserLoggedIn();
         </section>
         <section class="side-menu">
             <div class="side-menu__user-profile">
-                <a href="../UX/profil.php" target="_blank" class="side-menu__user-avatar">
-                    <img src="../assets/bork.jpg" alt="User Picture">
+                <a href="../UX/profil.php?id=<?php echo $user_id; ?> " target="_blank" class="side-menu__user-avatar">
+                    <img src="../assets/instagram-default-icon.png" alt="User Picture">
                 </a>
                 <div class="side-menu__user-info">
                     <a href="../UX/profil.php" target="_blank"><?php print_r($_SESSION['user']['username']); ?> </a>

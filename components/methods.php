@@ -33,14 +33,10 @@ function listProfile() {
 
 function showAllAttributes() {
     $pdo = connectToDB();
-    $stmt = $pdo->prepare('SELECT user_id FROM users WHERE user_id = :user_id'); 
-    $stmt->bindParam(':user_id', $_GET['user_id']);
-    var_dump($_GET['user_id']);
+    $stmt = $pdo->prepare('SELECT image_file FROM posts WHERE user_id = :id'); 
+    $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
     $get = $stmt->fetch(PDO::FETCH_ASSOC);
+    print_r($get['image_file']);
 
-    echo '<li>';
-    print_r($get['user_id']);
-    echo '</li>';
-  
 }

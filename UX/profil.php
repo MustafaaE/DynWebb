@@ -27,15 +27,12 @@ isUserLoggedIn();
 
     <div class="profile-image">
 
-      <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
+      <img src="../assets/instagram-default-icon.png" height="150" width="150" alt="">
 
     </div>
-    <?php  showAllAttributes(); ?>
+
     <?php  print_r($_SESSION['user']['user_id']); ?>
-    <?php
-     $variabel = $_GET['user_id'];
-    
-    ?>
+  
     <div class="profile-user-settings">
 
       <h1 class="profile-user-name"><?php print_r($_SESSION['user']['username']); ?> </h1>
@@ -67,7 +64,7 @@ isUserLoggedIn();
 
     <div class="gallery-item" tabindex="0">
 
-      <img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="">
+      <img src="<?php showAllAttributes() ?>" class="gallery-image" alt="">
 
       <div class="gallery-item-info">
 
