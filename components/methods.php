@@ -42,7 +42,7 @@ function showAllAttributes() {
      $path =  $currentDirectory . $image['image_file'];
      echo "<div class=gallery-item tabindex=0>";
      echo "<img src='  $path ' class=gallery-image alt=''>";
-     echo "<div>";
+      echo "</div>";
     }
 
 }
