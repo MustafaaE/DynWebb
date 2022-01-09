@@ -37,6 +37,8 @@ function showAllAttributes() {
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
     $get = $stmt->fetch(PDO::FETCH_ASSOC);
-    print_r($get['image_file']);
+    $currentDirectory = "http://localhost/";
+    $path = $currentDirectory .$get['image_file'] ;
+    print_r($path);
 
 }
