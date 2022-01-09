@@ -66,6 +66,72 @@ $stmt -> execute();
 
     </div>
 
+    <div class="gallery-item" tabindex="0">
+
+      <img src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+      <div class="gallery-item-info">
+
+        <ul>
+          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 89</li>
+          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 5</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="gallery-item" tabindex="0">
+
+      <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+      <div class="gallery-item-type">
+
+        <span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
+
+      </div>
+
+      <div class="gallery-item-info">
+
+        <ul>
+          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 42</li>
+          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="gallery-item" tabindex="0">
+
+      <img src="https://images.unsplash.com/photo-1502630859934-b3b41d18206c?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+      <div class="gallery-item-type">
+
+        <span class="visually-hidden">Video</span><i class="fas fa-video" aria-hidden="true"></i>
+
+      </div>
+
+      <div class="gallery-item-info">
+
+        <ul>
+          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 38</li>
+          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="gallery-item" tabindex="0">
+
+      <img src="https://images.unsplash.com/photo-1498471731312-b6d2b8280c61?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+      <div class="gallery-item-type">
+
+        <span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
+
+
   </div>
   <!-- End of gallery -->
 
