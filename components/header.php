@@ -35,7 +35,7 @@ function get_all() {
 <body>
     <div id="header-cont">
         <nav class="header-nav">
-            <li><a href="../UX/index.php">Home</a></li>
+            <li><a href="../UX/index.php?id=<?php echo $user_id; ?> ">Home</a></li>
             <li><a href="../UX/profil.php?id=<?php echo $user_id; ?> "> Profile </a></li>
             <li><a href="../file-upload/index.php">Upload</a></li>
             <li><a href="../interface/logout.php">Log out</a></li>

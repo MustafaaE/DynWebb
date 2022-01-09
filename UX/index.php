@@ -11,8 +11,6 @@ isUserLoggedIn();
  $pdo = connectToDB();
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +25,9 @@ isUserLoggedIn();
     <main class="main-container">
         <section class="content-container">
         <div class="content">
+        <div>
+            <?php username_index();?>
+        </div>
         <article class="post">
                 <div class="post__header">
                     <div class="post__profile">

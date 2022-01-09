@@ -1,6 +1,7 @@
 <?php 
 require 'connection.php';
 require '../components/methods.php';
+$user_id =$_SESSION['user']['user_id'];
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -21,6 +22,6 @@ if(!password_verify($password, $user['password'])) {
 
  $_SESSION['user'] = $user;
 echo $_SESSION['user'];
-redirectTo('UX/index.php');
+redirectTo('UX/index.php?id=' . $_SESSION['user']['user_id']);
 
 
