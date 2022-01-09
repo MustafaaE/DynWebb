@@ -61,11 +61,11 @@ $stmt -> execute();
 
   <div class="gallery">
 
-    <div class="gallery-item" tabindex="0">
+    <!-- <div class="gallery-item" tabindex="0"> -->
+    <?php showAllAttributes() ?>
 
-      <img src="<?php showAllAttributes() ?>" class="gallery-image" alt="">
-
-      <div class="gallery-item-info">
+    
+      <!-- <div class="gallery-item-info">
 
         <ul>
           <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
@@ -275,7 +275,7 @@ $stmt -> execute();
 
       </div>
 
-    </div>
+    </div> -->
 
   </div>
   <!-- End of gallery -->
