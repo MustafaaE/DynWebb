@@ -25,7 +25,8 @@ isUserLoggedIn();
 
       <img src= "../assets/instagram-default-icon.png" alt="default-icon" height="200px" width="200px">
 
-    </div>
+$stmt = $pdo->prepare("SELECT * FROM users");
+$stmt -> execute();
 
     <?php  print_r($_SESSION['user']['user_id']); ?>
     <div class="profile-user-settings">
@@ -41,13 +42,9 @@ isUserLoggedIn();
         <li><span class="profile-stat-count">206</span> following</li>
       </ul>
     </div>
-
+    <!-- End of profile section -->
   </div>
-  <!-- End of profile section -->
-
-</div>
 <!-- End of container -->
-
 </header>
 
 <main>
@@ -281,5 +278,16 @@ isUserLoggedIn();
 
 
 </main>
+<script>
+const user = document.querySelector('.profile-user-name');
+
+  let url_string = window.location;
+  let url = new URL(url_string);
+  let name = url.searchParams.get("username");
+  let id = url.searchParams.get("user_id");
+
+user.innerHTML = name;
+
+</script>
 </body>
 </html>

@@ -1624,6 +1624,38 @@ img {
   margin: 10px auto;
 }
 
+/* * * * * Upload CSS * * * * */
+#form{
+  margin: 1rem auto;
+  border: solid 1px grey;
+  padding: 1rem;
+  border-radius: 1px;
+  background-color: whitesmoke;
+  width: 400px;
+}
+
+#form div{
+  margin-bottom: 0.75rem;
+}
+
+#form div label{
+  display: inline-block;
+  margin-bottom: 5px;
+  vertical-align: top;
+  width: 100%;
+}
+
+#form div input, #form div select, #form div textarea{
+  background-color: white;
+  color: black;
+  border: 1px solid grey;
+  border-radius: 1px;
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  font-size: 1rem;
+}
+
 /* ********** */
 /* FOOTER */
 /* ********* */

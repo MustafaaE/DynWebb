@@ -8,7 +8,6 @@ isUserLoggedIn();
  $username = $_SESSION['user']['username'];
  print_r($user_id);
  print_r($username);
-
  $pdo = connectToDB();
 ?>
 
@@ -155,53 +154,6 @@ isUserLoggedIn();
                 
 
                 ?>
-
-
-               <!-- <div class="side-menu__suggestions-content">
-                    <div class="side-menu__suggestion">
-                        <a href="#" class="side-menu__suggestion-avatar">
-                            <img src="../assets/bork.jpg" alt="User Picture">
-                        </a>
-                        <div class="side-menu__suggestion-info">
-                            <a href="#">usernick16</a>
-                        </div>
-                           
-                    </div>
-                    <div class="side-menu__suggestion">
-                        <a href="#" class="side-menu__suggestion-avatar">
-                            <img src="../assets/bork.jpg" alt="User Picture">
-                        </a>
-                        <div class="side-menu__suggestion-info">
-                            <a href="#">usernick17</a>
-                        </div>
-                     
-                    </div>
-                    <div class="side-menu__suggestion">
-                        <a href="#" class="side-menu__suggestion-avatar">
-                            <img src="../assets/joshua.jpg" alt="User Picture">
-                        </a>
-                        <div class="side-menu__suggestion-info">
-                            <a href="#">usernick18</a>
-                        </div>   
-                    </div>
-
-                    <div class="side-menu__suggestion">
-                        <a href="#" class="side-menu__suggestion-avatar">
-                            <img src="../assets/joshua.jpg" alt="User Picture">
-                        </a>
-                            <div class="side-menu__suggestion-info">
-                            <a href="#">usernick19</a>
-                        </div>  
-                    </div>
-    
-                    <div class="side-menu__suggestion">
-                        <a href="#" class="side-menu__suggestion-avatar">
-                            <img src="../assets/bork.jpg" alt="User Picture">
-                        </a>
-                        <div class="side-menu__suggestion-info">
-                            <a href="#">usernick20</a>
-                        </div>
-                    </div> -->
                 </div>
         </section>
         <section>
