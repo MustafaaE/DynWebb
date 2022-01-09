@@ -3,6 +3,8 @@ require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
 isUserLoggedIn();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +23,7 @@ isUserLoggedIn();
 
     <div class="profile-image">
 
-      <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
+      <img src= "../assets/instagram-default-icon.png" alt="default-icon" height="200px" width="200px">
 
     </div>
 

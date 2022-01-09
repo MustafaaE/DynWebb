@@ -8,6 +8,8 @@ isUserLoggedIn();
  $username = $_SESSION['user']['username'];
  print_r($user_id);
  print_r($username);
+
+ $pdo = connectToDB();
 ?>
 
 
@@ -133,10 +135,29 @@ isUserLoggedIn();
                 <button class="side-menu__user-button">Switch</button>
             </div>
             <div class="side-menu__suggestions-section">
-                <div class="side-menu__suggestions-header">
+                 <div class="side-menu__suggestions-header">
                     <h2>Suggestions for You</h2>
                 </div>
-                <div class="side-menu__suggestions-content">
+
+                <?php 
+                
+                $stmt = $pdo->prepare("SELECT * FROM users WHERE NOT username = '$username'"); 
+                $stmt -> execute();
+                $users = $stmt -> fetchAll();
+
+                echo "<div class='side-menu__suggestion'>" . "<ul>";
+                foreach($users as $user){
+                    
+                    echo '<li class = "testlist">'. "<img src='../assets/instagram-default-icon.png' class='side-menu__suggestion-avatar'>"
+                    . '<a href = "profil.php?id=' . $user['user_id'] . '">'. $user['username'] .  "</a>".  '</li>';
+                }
+                echo  "</div>" . "</ul>";
+                
+
+                ?>
+
+
+               <!-- <div class="side-menu__suggestions-content">
                     <div class="side-menu__suggestion">
                         <a href="#" class="side-menu__suggestion-avatar">
                             <img src="../assets/bork.jpg" alt="User Picture">
@@ -180,7 +201,7 @@ isUserLoggedIn();
                         <div class="side-menu__suggestion-info">
                             <a href="#">usernick20</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
         </section>
         <section>

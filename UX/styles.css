@@ -1765,3 +1765,7 @@ img {
     font-weight: 600;
   }
 }
+
+.testlist{
+  list-style: none;
+}

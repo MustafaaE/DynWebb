@@ -11,13 +11,6 @@ require '../components/header.php';
 </head>
 <body>
 <main>
-    <div>
-        <?php if(isset($_SESSION['flash'])): ?>
-            <p><?php echo $_SESSION['flash']['message'] ?></p>
-            <img src="/<?php echo $_SESSION['flash']['filepath'] ?>" width="200" height="200" />
-            <p><?php echo $_SESSION['flash']['filepath'] ?></p>
-        <?php endif; ?>
-    </div>
 
     <form enctype="multipart/form-data"  action="./upload.php" method="post">
         <div>
