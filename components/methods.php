@@ -73,11 +73,6 @@ function username_index() {
    $stmt->execute();
    $username = $stmt->fetchall();
    $user_id =$_SESSION['user']['user_id'];
-   foreach($username as $user){
-    echo '<br>';
-    print_r($user['username']);
-    echo '</br>';
-   }
     ?>
     <article class="post">
                 <div class="post__header">
@@ -85,7 +80,13 @@ function username_index() {
                         <a href="#" class="post__avatar">
                             <img src="../assets/instagram-default-icon.png" alt="User Picture">
                         </a>
-                        <a href="#" class="post__user"> Posters id name </a>
+                        <a href="#" class="post__user"> 
+                        <?php 
+                         foreach($username as $user){
+                             echo '<br>';
+                             print_r($user['username']);
+                             echo '</br>';
+                             } ?> </a>
                     </div>
                 </div>
 
