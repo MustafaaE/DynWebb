@@ -31,10 +31,14 @@ function showAllAttributes() {
     $stmt = $pdo->prepare('SELECT image_file FROM posts WHERE user_id = :id'); 
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
-    $get = $stmt->fetch(PDO::FETCH_ASSOC);
+    $get = $stmt->fetchAll();
+    foreach($get as $image){
     $currentDirectory = "http://localhost";
-    $path = $currentDirectory .$get['image_file'] ;
-    print_r($path);
+     $path =  $currentDirectory . $image['image_file'];
+     echo "<div class=gallery-item tabindex=0>";
+     echo "<img src='  $path ' class=gallery-image height='100' width='100' alt=''>";
+     echo "<div>";
+    }
 
 } 
 
@@ -48,21 +52,6 @@ function test() {
     var_dump($results);
 
 
- /*    echo '<ul>';
-    foreach ($results as $blogpost) {
-        echo '<img href="../UX/profil.php?id='. $blogpost->user_id .'">'.$blogpost->image_file. '</img>';
-    }
-    echo '</ul>'; */
-?>
 
-    <div href ="" class="gallery-item" tabindex="0">
 
-      <img src="<?php  ?>" class="gallery-image" alt=""> 
-
-    <div class="gallery-item-info">
-
-    </div>
-
-  </div>
-  <?php 
 }
