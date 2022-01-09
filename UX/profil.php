@@ -24,11 +24,11 @@ isUserLoggedIn();
     <div class="profile-image">
 
       <img src= "../assets/instagram-default-icon.png" alt="default-icon" height="200px" width="200px">
-
+      <?php 
 $stmt = $pdo->prepare("SELECT * FROM users");
 $stmt -> execute();
 
-    <?php  print_r($_SESSION['user']['user_id']); ?>
+     print_r($_SESSION['user']['user_id']); ?>
     <div class="profile-user-settings">
 
       <h1 class="profile-user-name"><?php print_r($_SESSION['user']['username']); ?> </h1>
