@@ -19,18 +19,27 @@ $stmt -> execute();
 </head>
 <body>
 <header>
+
+<div>
+  <?php 
+  get_all();
+  ?>
+</div>
 <div class="container">
   <div class="profile">
 
     <div class="profile-image">
 
-      <img src= "../assets/instagram-default-icon.png" alt="default-icon" height="150px" width="150px">
-      <?php 
+      <img src="../assets/instagram-default-icon.png" height="150" width="150" alt="">
 
-     print_r($_SESSION['user']['user_id']); ?>
+    </div>
+
+    <?php  print_r($_SESSION['user']['user_id']); ?>
+  
     <div class="profile-user-settings">
 
       <h1 class="profile-user-name"><?php print_r($_SESSION['user']['username']); ?> </h1>
+    
       
     </div>
           <button class="btn-follow">Följ</button>
@@ -54,7 +63,7 @@ $stmt -> execute();
 
     <div class="gallery-item" tabindex="0">
 
-      <img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="">
+      <img src="<?php showAllAttributes() ?>" class="gallery-image" alt="">
 
       <div class="gallery-item-info">
 

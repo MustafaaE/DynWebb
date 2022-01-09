@@ -15,16 +15,28 @@ function isUserLoggedIn()
     }
 }
 
+function show_index_page_user() {
+/* BEHÖVER BARA GÖRA EN GET FRÅN DATABASEN? */
 
-function show_index_page_user()
-{
+}
+
+function listProfile() {
+    require_once "../interface/connection.php";
     $pdo = connectToDB();
-    $statement = $pdo->prepare('SELECT id, /* images, usernames, något mer  */ FROM /* Någonstans */');
+    $statement = $pdo->prepare('SELECT * FROM users WHERE user_id = :user_id');
+    $statement->bindParam(':user_id', $_GET['id']);
+    var_dump($_GET['id']);
     $statement->execute();
-    $results = $statement->fetchAll(PDO::FETCH_CLASS);
-    echo '<ul>';
-    foreach ($results as $item) {
-        echo '<li class="post"><a class="post" href="/dynweb/UX/index.php?id='. $item->id .'">'.$item->title. '</a></li>';
-    }
-    echo '</ul>';
+    $results = $statement->fetch(PDO::FETCH_ASSOC);
+    print_r($results);
+}
+
+function showAllAttributes() {
+    $pdo = connectToDB();
+    $stmt = $pdo->prepare('SELECT image_file FROM posts WHERE user_id = :id'); 
+    $stmt->bindParam(':id', $_GET['id']);
+    $stmt->execute();
+    $get = $stmt->fetch(PDO::FETCH_ASSOC);
+    print_r($get['image_file']);
+
 }
