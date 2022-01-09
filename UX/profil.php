@@ -3,8 +3,9 @@ require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
 isUserLoggedIn();
-
-
+$pdo =connectToDB();
+$stmt = $pdo->prepare("SELECT * FROM users");
+$stmt -> execute();
 ?>
 
 <!DOCTYPE html>
@@ -23,10 +24,8 @@ isUserLoggedIn();
 
     <div class="profile-image">
 
-      <img src= "../assets/instagram-default-icon.png" alt="default-icon" height="200px" width="200px">
+      <img src= "../assets/instagram-default-icon.png" alt="default-icon" height="150px" width="150px">
       <?php 
-$stmt = $pdo->prepare("SELECT * FROM users");
-$stmt -> execute();
 
      print_r($_SESSION['user']['user_id']); ?>
     <div class="profile-user-settings">
