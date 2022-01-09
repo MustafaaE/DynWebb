@@ -32,7 +32,9 @@ function showAllAttributes() {
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
     $get = $stmt->fetch(PDO::FETCH_ASSOC);
-    print_r($get['image_file']);
+    $currentDirectory = "http://localhost";
+    $path = $currentDirectory .$get['image_file'] ;
+    print_r($path);
 
 } 
 
@@ -55,7 +57,7 @@ function test() {
 
     <div href ="" class="gallery-item" tabindex="0">
 
-      <img src="<?php $results ?>" class="gallery-image" alt=""> 
+      <img src="<?php  ?>" class="gallery-image" alt=""> 
 
     <div class="gallery-item-info">
 

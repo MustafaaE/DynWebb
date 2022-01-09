@@ -61,10 +61,9 @@ $stmt -> execute();
 
   <div class="gallery">
     
-    <?php test(); ?>
     <div class="gallery-item" tabindex="0">
 
-      <!--  <img src="< ?php test(); ?>" class="gallery-image" alt="">  -->
+    <img src="<?php showAllAttributes(); ?>" class="gallery-image" alt=""> 
 
       <div class="gallery-item-info">
 
