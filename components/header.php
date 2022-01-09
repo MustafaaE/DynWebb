@@ -62,7 +62,7 @@ TABLEROW;
         {
             echo <<<TABLEROW
                 <tr>
-                    <td><a href="../UX/profil.php?username={$result['username']}&user_id={$result['user_id']}">{$result['username']}</a></td>
+                    <td><a href="../UX/profil.php?id={$result['user_id']}">{$result['username']}</a></td>
                 </tr>
             </table>
             TABLEROW;
