@@ -15,11 +15,6 @@ function isUserLoggedIn()
     }
 }
 
-function show_index_page_user() {
-/* BEHÖVER BARA GÖRA EN GET FRÅN DATABASEN? */
-
-}
-
 function listProfile() {
     require_once "../interface/connection.php";
     $pdo = connectToDB();
@@ -39,4 +34,33 @@ function showAllAttributes() {
     $get = $stmt->fetch(PDO::FETCH_ASSOC);
     print_r($get['image_file']);
 
+} 
+
+function test() {
+
+    $pdo = connectToDB();
+    $stmt = $pdo->prepare('SELECT image_file FROM posts WHERE user_id = :id'); 
+    $stmt->bindParam(':id', $_GET['id']);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_CLASS);
+    var_dump($results);
+
+
+ /*    echo '<ul>';
+    foreach ($results as $blogpost) {
+        echo '<img href="../UX/profil.php?id='. $blogpost->user_id .'">'.$blogpost->image_file. '</img>';
+    }
+    echo '</ul>'; */
+?>
+
+    <div href ="" class="gallery-item" tabindex="0">
+
+      <img src="<?php $results ?>" class="gallery-image" alt=""> 
+
+    <div class="gallery-item-info">
+
+    </div>
+
+  </div>
+  <?php 
 }
