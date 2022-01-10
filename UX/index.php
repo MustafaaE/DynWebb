@@ -141,17 +141,18 @@ isUserLoggedIn();
 
                 <?php 
                 
-                $stmt = $pdo->prepare("SELECT * FROM users WHERE NOT username = '$username'"); 
-                $stmt -> execute();
-                $users = $stmt -> fetchAll();
+                showSuggestedUsers();
+                // $stmt = $pdo->prepare("SELECT * FROM users WHERE NOT username = '$username'"); 
+                // $stmt -> execute();
+                // $users = $stmt -> fetchAll();
 
-                echo "<div class='side-menu__suggestion'>" . "<ul>";
-                foreach($users as $user){
+                // echo "<div class='side-menu__suggestion'>" . "<ul>";
+                // foreach($users as $user){
                     
-                    echo '<li class = "testlist">'. "<img src='../assets/instagram-default-icon.png' class='side-menu__suggestion-avatar'>"
-                    . '<a href = "profil.php?id=' . $user['user_id'] . '">'. $user['username'] .  "</a>".  '</li>';
-                }
-                echo  "</div>" . "</ul>";
+                //     echo '<li class = "testlist">'. "<img src='../assets/instagram-default-icon.png' class='side-menu__suggestion-avatar'>"
+                //     . '<a href = "profil.php?id=' . $user['user_id'] . '">'. $user['username'] .  "</a>".  '</li>';
+                // }
+                // echo  "</div>" . "</ul>";
                 
 
                 ?>
