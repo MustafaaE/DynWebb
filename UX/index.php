@@ -1,7 +1,8 @@
-<?php 
+<?php
 require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
+//require_once "../components/footer.php";
 isUserLoggedIn();
 
  $user_id =$_SESSION['user']['user_id'];
@@ -138,20 +139,20 @@ isUserLoggedIn();
                     <h2>Suggestions for You</h2>
                 </div>
 
-                <?php 
-                
-                $stmt = $pdo->prepare("SELECT * FROM users WHERE NOT username = '$username'"); 
+                <?php
+
+                $stmt = $pdo->prepare("SELECT * FROM users WHERE NOT username = '$username'");
                 $stmt -> execute();
                 $users = $stmt -> fetchAll();
 
                 echo "<div class='side-menu__suggestion'>" . "<ul>";
                 foreach($users as $user){
-                    
+
                     echo '<li class = "testlist">'. "<img src='../assets/instagram-default-icon.png' class='side-menu__suggestion-avatar'>"
                     . '<a href = "profil.php?id=' . $user['user_id'] . '">'. $user['username'] .  "</a>".  '</li>';
                 }
                 echo  "</div>" . "</ul>";
-                
+
 
                 ?>
                 </div>
@@ -163,5 +164,6 @@ isUserLoggedIn();
 </section>
     </main>
 
-</body> 
+</body>
 </html>
+<?php require_once "../components/footer.php"?>
