@@ -62,7 +62,8 @@ $stmt -> execute();
   <div class="gallery">
 
     <!-- <div class="gallery-item" tabindex="0"> -->
-    <?php showAllAttributes() ?>
+    <?php showAllAttributes();
+    ?>
 
     
      

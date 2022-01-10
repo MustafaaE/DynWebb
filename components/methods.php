@@ -46,28 +46,25 @@ function showAllAttributes()
 
 function following()
 {
+    $profileId = $_GET['id']; 
     $pdo = connectToDB();
-    $stmt = $pdo->prepare('SELECT follow_id FROM following WHERE follow_id = :id');
-    $stmt->bindParam(':id', $_GET['id']);
+    $stmt = $pdo->prepare('SELECT COUNT(follower_id) FROM following WHERE follower_id = :id');
+    $stmt->bindParam(':id', $profileId);
     $stmt->execute();
-    $get = $stmt->fetchAll();
-    foreach ($get as $following) {
-        $follow = $following['follow_id'];
-        print_r($follow);
-    }
+    $get = $stmt->fetch();
+    print_r($get[0]);
 }
 
 function followers()
 {
+    $profileId = $_GET['id']; 
     $pdo = connectToDB();
-    $stmt = $pdo->prepare('SELECT follower_id FROM following WHERE follower_id = :id');
-    $stmt->bindParam(':id', $_GET['id']);
+    $stmt = $pdo->prepare('SELECT COUNT(user_id)FROM following WHERE user_id = :id');
+    $stmt->bindValue(':id', $profileId);
     $stmt->execute();
-    $get = $stmt->fetchAll();
-    foreach ($get as $followers) {
-        $follows = $followers['follower_id'];
-        print_r($follows);
-    }
+    $get = $stmt->fetch();
+    print_r($get[0]);
+
 }
 
 function username_index()
