@@ -5,3 +5,6 @@ require_once "../interface/connection.php";
 isUserLoggedIn();
 $pdo = connectToDB();
 
+loadPictureSite();
+
+loadComments();

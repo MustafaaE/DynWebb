@@ -25,7 +25,7 @@ isUserLoggedIn();
     <main class="main-container">
         <section class="content-container">
         <div class="content">
-            <?php baratest(); ?>
+            <?php ShowPostOnIndex(); ?>
       
 
         </div>
