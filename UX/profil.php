@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
@@ -21,7 +21,7 @@ $stmt -> execute();
 <header>
 
 <div>
-  <?php 
+  <?php
   get_all();
   ?>
 </div>
@@ -35,12 +35,12 @@ $stmt -> execute();
     </div>
 
     <?php  print_r($_SESSION['user']['user_id']); ?>
-  
+
     <div class="profile-user-settings">
 
       <h1 class="profile-user-name"><?php print_r($_SESSION['user']['username']); ?> </h1>
-    
-      
+
+
     </div>
           <button class="btn-follow">Följ</button>
           <buttuon class="btn-hide" hidden>avfölj</buttuon>
@@ -87,3 +87,4 @@ user.innerHTML = name;
 </script>
 </body>
 </html>
+<?php require_once "../components/footer.php" ?>
