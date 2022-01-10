@@ -109,8 +109,6 @@ function showPostOnIndex() {
         $currentDirectory = "http://localhost";
         $path =  $currentDirectory . $items['image_file'];
         
-       
-        
         echo "<article class='post'>";
         echo    "<div class='post__header'>";
         echo      "<div class='post__profile'>";
