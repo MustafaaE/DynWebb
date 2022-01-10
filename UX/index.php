@@ -27,9 +27,8 @@ isUserLoggedIn();
         <section class="content-container">
         <div class="content">
             <?php ShowPostOnIndex(); ?>
-      
-
         </div>
+
         </section>
         <section class="side-menu">
             <div class="side-menu__user-profile">
