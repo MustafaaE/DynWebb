@@ -34,11 +34,12 @@ function showImageInProfile()
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
     $get = $stmt->fetchAll(pdo::FETCH_OBJ);
+    $imagelinkstarter = '/DynWebb/UX/index.php/';
     foreach ($get as $image) {
         $currentDirectory = "http://localhost";
         $path =  $currentDirectory . $image->image_file;
         echo "<div class=gallery-item tabindex=0>";
-        echo "<img src='  $path 'class=gallery-image alt=' ' >";
+        echo "<img src='$path'class=gallery-image  href='$currentDirectory' . '$imagelinkstarter'.'$image->post_id'>";
         echo "</div>";
     }
 }
@@ -130,6 +131,7 @@ function baratest() {
         echo         "<img src='../assets/instagram-default-icon.png' alt='User Picture'>";
         echo        "</a>";
         echo        "<a href='#' class='post__user'> Posters id name </a>";
+        echo         "<a class='post__user' href='#'>"; username_index(); "</a>";
         echo      "</div>";
         echo     "</div>";
         echo    "<div class='post__content'>";
