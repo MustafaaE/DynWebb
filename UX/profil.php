@@ -2,36 +2,91 @@
 require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
+
 isUserLoggedIn();
 
 $pdo = connectToDB();
-
 $stmt = $pdo->prepare("SELECT * FROM users");
 $stmt -> execute();
+
+if(!empty($_POST['follow']) && !empty($_POST['user_id']))
+{
+  $pdo = connectToDB();
+
+  $follow_id = htmlspecialchars($_POST['follow']);
+  $user_id = htmlspecialchars($_POST['user_id']);
+  
+  $stmtfollow = $pdo -> prepare("insert into following(user_id ,follower_id) VALUES (:user_id, :follower_id)");
+  $stmtfollow ->bindValue('user_id', $user_id);
+  $stmtfollow ->bindValue('follower_id', $follow_id);
+  $stmtfollow -> execute();
+}
+
+if(!empty($_POST['unfollow']) && !empty($_POST['user_id']))
+{
+  $pdo = connectToDB();
+
+  $unfollow_id = htmlspecialchars($_POST['unfollow']);
+  $user_id = htmlspecialchars($_POST['user_id']);
+
+  $stmtunfollow = $pdo -> prepare("DELETE FROM following WHERE follower_id=('{$user_id}')");
+  $stmtunfollow -> execute();
+}
 
 ?>
 
 <header>
-  <div class="container">
-    <div class="profile">
 
-        <div class="profile-image">
-          <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
-        </div>
+<div>
+  <?php 
+  get_all();
+  ?>
+</div>
+<div class="container">
+  <div class="profile">
 
-        <div class="profile-user-settings">
-          <h1 class="profile-user-name"></h1>
-        </div>
+    <div class="profile-image">
 
-        <button class="btn-follow">Follow</button>
-        <buttuon class="btn-hide" hidden>Unfollow</buttuon>
+      <img src="../assets/instagram-default-icon.png" height="150" width="150" alt="">
 
-        <div class="profile-stats">
-          <ul>
-            <li><span class="profile-stat-count">188</span> followers</li>
-            <li><span class="profile-stat-count">206</span> following</li>
-          </ul>
-        </div>
+    </div>
+
+    <?php  print_r($_SESSION['user']['user_id']); ?>
+  
+    <div class="profile-user-settings">
+
+      <h1 class="profile-user-name"><?php print_r($_SESSION['user']['user_id']); ?> </h1>
+    </div>
+
+<?php
+
+if(isset($_POST['submit']))
+{
+  $hide=2;
+
+  echo <<<TABLEROW
+    <form method="post">
+      <button class="btn-hide">Unfollow</button>
+      <input type="hidden" name="unfollow" value="{$_SESSION['user']['user_id']}">
+      <input type="hidden" name="user_id" id="user_id">
+    </form>
+  TABLEROW;
+}
+?>
+
+<?php if(!isset($hide)) { ?>
+    <form action="" method="post">
+      <input class="btn-follow" type="submit" name="submit" value="Follow">
+      <input type="hidden" name="follow" value="<?php echo $_SESSION['user']['user_id']?>">
+      <input type="hidden" name="user_id" id="user_id">
+    </form>
+<?php }?>
+
+    <div class="profile-stats">
+      <ul>
+        <li><span class="profile-stat-count"><?php followers(); ?></span> followers</li>
+        <li><span class="profile-stat-count"><?php following(); ?></span> following</li>
+      </ul>
     </div>
     <!-- End of profile section -->
   </div>
@@ -43,226 +98,9 @@ $stmt -> execute();
 <div class="container">
 
   <div class="gallery">
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 89</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 5</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-type">
-
-        <span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
-
-      </div>
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 42</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1502630859934-b3b41d18206c?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-type">
-
-        <span class="visually-hidden">Video</span><i class="fas fa-video" aria-hidden="true"></i>
-
-      </div>
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 38</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1498471731312-b6d2b8280c61?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-type">
-
-        <span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
-
-      </div>
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 47</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 94</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 3</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-type">
-
-        <span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
-
-      </div>
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 52</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 4</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1515814472071-4d632dbc5d4a?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 66</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1511407397940-d57f68e81203?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-type">
-
-        <span class="visually-hidden">Gallery</span><i class="fas fa-clone" aria-hidden="true"></i>
-
-      </div>
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 45</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1518481612222-68bbe828ecd1?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 34</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1505058707965-09a4469a87e4?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 41</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="gallery-item" tabindex="0">
-
-      <img src="https://images.unsplash.com/photo-1423012373122-fff0a5d28cc9?w=500&h=500&fit=crop" class="gallery-image" alt="">
-
-      <div class="gallery-item-type">
-
-        <span class="visually-hidden">Video</span><i class="fas fa-video" aria-hidden="true"></i>
-
-      </div>
-
-      <div class="gallery-item-info">
-
-        <ul>
-          <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 30</li>
-          <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-        </ul>
-
-      </div>
-
-    </div>
-
+    <?php showAllAttributes() ?>
   </div>
   <!-- End of gallery -->
-
 
 </div>
 <!-- End of container -->
@@ -271,13 +109,16 @@ $stmt -> execute();
 </main>
 <script>
 const user = document.querySelector('.profile-user-name');
+const followbtn = document.querySelector('.btn-follow');
+const user_id = document.querySelector('#user_id');
 
-  let url_string = window.location;
-  let url = new URL(url_string);
-  let name = url.searchParams.get("username");
-  let id = url.searchParams.get("user_id");
+let url_string = window.location;
+let url = new URL(url_string);
+let id = url.searchParams.get("id");
 
-user.innerHTML = name;
+user.innerHTML = id;
+
+user_id.setAttribute("value", id);
 
 </script>
 </body>
