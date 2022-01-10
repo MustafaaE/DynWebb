@@ -34,12 +34,12 @@ function showAllAttributes()
     $stmt = $pdo->prepare('SELECT image_file FROM posts WHERE user_id = :id');
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
-    $get = $stmt->fetchAll();
+    $get = $stmt->fetchAll(pdo::FETCH_OBJ);
     foreach ($get as $image) {
         $currentDirectory = "http://localhost";
-        $path =  $currentDirectory . $image['image_file'];
+        $path =  $currentDirectory . $image->image_file;
         echo "<div class=gallery-item tabindex=0>";
-        echo "<img src='  $path ' class=gallery-image alt=''>";
+        echo "<img src='  $path 'class=gallery-image alt=' ' >";
         echo "</div>";
     }
 }
