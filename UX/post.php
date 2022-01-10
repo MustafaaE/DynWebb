@@ -8,3 +8,6 @@ $pdo = connectToDB();
 loadPictureSite();
 
 loadComments();
+
+
+require_once "../components/footer.php";
