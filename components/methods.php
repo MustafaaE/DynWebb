@@ -61,10 +61,10 @@ function followers() {
     $stmt->execute();
     $get = $stmt->fetchAll();
     foreach($get as $followers){
-     $follows = $followers['follower_id'];
-     print_r($follows);
+        $followers[0];
     }
-}
+    print_r($followers);
+}   
 
 function username_index() {
 
