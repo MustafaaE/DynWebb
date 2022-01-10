@@ -24,11 +24,13 @@ isUserLoggedIn();
 <body>
     <main class="main-container">
         <section class="content-container">
+            <div>
+                <?php username_index(); ?>
+            </div>
         <div class="content">
             <?php baratest(); ?>
-      
-
         </div>
+
         </section>
         <section class="side-menu">
             <div class="side-menu__user-profile">

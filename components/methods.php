@@ -69,14 +69,20 @@ function followers()
 function username_index()
 {
     $pdo = connectToDB();
-    $stmt = $pdo->prepare('SELECT username FROM users INNER JOIN posts ON users.user_id = posts.post_id');
-    $stmt->execute();
-    $username = $stmt->fetch(PDO::FETCH_ASSOC);
-    echo '<a href="#" class="post__user">';
-    print_r($username['username']);
-    echo '</a>';
-}
 
+    $stmt = $pdo->prepare('SELECT username FROM users INNER JOIN posts ON users.user_id = posts.post_id');
+
+    $stmt->execute();
+
+    $username = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    echo '<a href="#" class="post__user">';
+
+    print_r($username);
+
+    echo '</a>';
+
+}
 function showSuggestedUsers()
 {
     $username = $_SESSION['user']['username'];
@@ -95,23 +101,6 @@ function showSuggestedUsers()
 }
 
 
-function showImageInFeed()
-{
-    $pdo = connectToDB();
-    $stmt = $pdo->prepare('SELECT image_file FROM posts WHERE user_id = :id');
-    $stmt->bindParam(':id', $_GET['id']);
-    $stmt->execute();
-    $get = $stmt->fetchall();
-    foreach($get as $items) {
-        $currentDirectory = "http://localhost";
-        $path =  $currentDirectory . $items['image_file'];
-        echo "<div>";
-        echo "<img src='  $path '>";
-        echo "</div>";
-    }
-
-}
-
 function baratest() {
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT image_file FROM posts WHERE user_id = :id');
@@ -129,7 +118,7 @@ function baratest() {
         echo        "<a href='#' class='post__avatar'>";
         echo         "<img src='../assets/instagram-default-icon.png' alt='User Picture'>";
         echo        "</a>";
-        echo        "<a href='#' class='post__user'> Posters id name </a>";
+        echo        "<a class='post__user' href='#'>"; username_index(); "</a>";
         echo      "</div>";
         echo     "</div>";
         echo    "<div class='post__content'>";
@@ -155,7 +144,8 @@ function baratest() {
         echo                '<a href="#" class="post__likes-avatar">';
         echo                    '<img src="../assets/bork.jpg" alt="User Picture">';
         echo                '</a>';
-        echo                "<span>Liked by <a class='post__name--underline' href='#"> print_r($_SESSION['user']['username']);"</a> and <a href='#'>73 others</a></span>";
+        echo                "<span>Liked by <a class='post__name--underline' href='#"> print_r($_SESSION['user']['username']);"</a>";  
+        echo                "<a href='#'>73 others</a></span>";
         echo            "</div>";
         echo            '<div class="post__description">';
         echo                '<span>';
