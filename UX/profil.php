@@ -46,7 +46,7 @@ $stmt -> execute();
           <buttuon class="btn-hide" hidden>avfölj</buttuon>
     <div class="profile-stats">
       <ul>
-        <li><span class="profile-stat-count"><?php followers(); ?></span> followers</li>
+      <li><span class="profile-stat-count"><?php followers(); ?></span> followers</li>
         <li><span class="profile-stat-count"><?php following(); ?></span> following</li>
       </ul>
     </div>
@@ -60,9 +60,14 @@ $stmt -> execute();
 <div class="container">
 
   <div class="gallery">
-    <?php showAllAttributes() ?>
-  </div>
-  <!-- End of gallery -->
+
+    <!-- <div class="gallery-item" tabindex="0"> -->
+    <?php showImageInProfile();
+    ?>
+
+    
+     
+
 
 </div>
 <!-- End of container -->
