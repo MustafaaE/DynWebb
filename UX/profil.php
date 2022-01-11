@@ -29,7 +29,7 @@ if(!empty($_POST['unfollow']) && !empty($_POST['user_id']))
   $unfollow_id = htmlspecialchars($_POST['unfollow']);
   $user_id = htmlspecialchars($_POST['user_id']);
 
-  $stmtunfollow = $pdo -> prepare("DELETE FROM following WHERE follower_id=('{$user_id}')");
+  $stmtunfollow = $pdo -> prepare("DELETE FROM following WHERE user_id=('{$user_id}')");
   $stmtunfollow -> execute();
 }
 
