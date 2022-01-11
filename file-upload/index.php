@@ -1,5 +1,5 @@
 <?php 
-require '../components/header.php';
+require '../components/header-post.php';
 ?>
 
 <main>
