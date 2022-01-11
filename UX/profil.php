@@ -76,7 +76,7 @@ if(isset($_POST['submit']))
 ?>
 
 <?php if(!isset($hide)) { ?>
-    <form action="" method="post">
+    <form  method="post">
       <input class="btn-follow" type="submit" name="submit" value="Follow">
       <input type="hidden" name="follow" value="<?php echo $_SESSION['user']['user_id']?>">
       <input type="hidden" name="user_id" id="user_id">

@@ -1,11 +1,31 @@
 <?php
 require_once "../components/methods.php";
-require_once "../components/header.php";
+require_once "../components/header-post.php";
 require_once "../interface/connection.php";
 isUserLoggedIn();
 $pdo = connectToDB();
-?>
 
+$user_id =$_SESSION['user']['user_id'];
+$username = $_SESSION['user']['username'];
+
+if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
+
+    $user_id =$_SESSION['user']['user_id'];
+    $comment = htmlspecialchars($_POST['comment']);
+    $post_id = htmlspecialchars($_POST['post-id']);
+
+    $stmt = $pdo->prepare('INSERT INTO comments (content,user_id,post_id) VALUES (:comment,:user_id,:post_id)');
+  
+    $stmt->bindValue('comment', $comment);
+    $stmt->bindValue('user_id', $user_id);
+    $stmt->bindValue('post_id', $post_id);
+    $stmt -> execute();
+  
+   header("Location: ../UX/post.php?id=$post_id");
+  
+  }
+
+?>
   <div class="wrapper">
     <div class="container">
       
@@ -27,10 +47,20 @@ $pdo = connectToDB();
           <hr>
           
           <div class="gallery-comments">
-            <div class="comment-add">
-              <input id="comment-input" autocomplete="off" maxlength="60" placeholder="Say something nice..">
-              <span class="chars-counter"><span id="chars-current">0</span>/60</span>
-            </div>
+
+          <form  method="post">
+
+              <div class="comment-add">
+
+                <input name="comment" id="comment-input" autocomplete="off" maxlength="60" placeholder="Say something nice..">
+
+                <input type="hidden" name="post-id" value="<?php echo $post_id = $_GET['id']; ?>">
+
+                <input type="submit" value="Submit">
+
+                </div>
+
+              </form>
             <?php loadComments(); ?>
             
             <a href="#" class="more-comments">Show more...</a>
@@ -238,6 +268,11 @@ $pdo = connectToDB();
       margin-top: 15px;
       display: block;
       color: #aaa;
+    }
+
+    #comment-time{
+      color: lightgray;
+      font-size: 10px;
     }
     
     @media only screen and (max-width: 1200px) {

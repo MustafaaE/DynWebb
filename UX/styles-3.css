@@ -860,7 +860,6 @@ img {
   overflow: hidden;
   white-space: nowrap;
 }
-
 .header__search input:focus {
   color: var(--text-dark);
 }
