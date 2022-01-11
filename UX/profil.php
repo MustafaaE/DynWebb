@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
@@ -98,9 +98,13 @@ if(isset($_POST['submit']))
 <div class="container">
 
   <div class="gallery">
-    <?php showAllAttributes() ?>
-  </div>
-  <!-- End of gallery -->
+
+    <!-- <div class="gallery-item" tabindex="0"> -->
+    <?php showImageInProfile();
+    ?>
+
+    
+     
 
 </div>
 <!-- End of container -->
@@ -123,3 +127,4 @@ user_id.setAttribute("value", id);
 </script>
 </body>
 </html>
+<?php require_once "../components/footer.php" ?>
