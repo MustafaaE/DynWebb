@@ -1,5 +1,8 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 function redirectTo($url = null)
 {
@@ -172,9 +175,29 @@ function loadPictureSite(){
         $description = $get->description;
         $username = $get->username;
     
-    echo        "<img src='  $path ' width= 200px height=200px>";
-    echo         "<p> uploaded by : $username </p>";
-    echo         "<p> $description </p>";
+    echo        "<img src='  $path ' width= 700px height=600px>";
+   /*  echo         "<p> uploaded by : $username </p>"; */
+ /*    echo         "<p> $description </p>"; */
+}   
+
+function loadDescriptionSite(){
+    $pdo = connectToDB();
+    $stmt = $pdo->prepare('SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_id = :id');
+    // $stmt->bindParam(':id', $_GET['id']);
+    $stmt->execute( ['id' => $_GET['id']]);
+    $get = $stmt->fetch(pdo::FETCH_OBJ);
+        $description = $get->description;
+    echo         "<p> $description </p>"; 
+}   
+
+function loadUserSite(){
+    $pdo = connectToDB();
+    $stmt = $pdo->prepare('SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_id = :id');
+    // $stmt->bindParam(':id', $_GET['id']);
+    $stmt->execute( ['id' => $_GET['id']]);
+    $get = $stmt->fetch(pdo::FETCH_OBJ);
+    $username = $get->username;
+    echo         "<p> uploaded by : $username </p>"; 
 }   
 
 
@@ -185,9 +208,13 @@ function loadComments(){
     $stmt->execute (['id' => $_GET['id']]);
     $get = $stmt->fetchAll(pdo::FETCH_OBJ);
     foreach($get as $comments){
-        echo "<p> {$comments-> username} : {$comments-> content}' </p>"; 
+        /* echo "<p> {$comments-> username} : {$comments-> content}' </p>";  */
+        
+        echo  "<div class='comment'>";
+        echo  " {$comments-> username} : </a><span>{$comments-> content}</span>";
+        echo  "</div>";
     }
 
 
- }
+}
 
