@@ -1,6 +1,6 @@
 <?php
 require_once "../components/methods.php";
-require_once "../components/header.php";
+require_once "../components/header-post.php";
 require_once "../interface/connection.php";
 isUserLoggedIn();
 $pdo = connectToDB();
@@ -13,13 +13,12 @@ if (isset($_POST['submit-comment'])) {
 
   $stmt = $connect->prepare('INSERT INTO comments (content) VALUES (:comment)');
   $stmt->bindParam('comment', $comment);
-  $stmt->bindParam('id', $_GET['id']);
   try {
     $stmt->execute();
   } catch(PDOException $e) {
     echo $e->getMessage();
   }
-
+  header( "refresh:1;url=http://localhost/dynwebb/" );
 }
 
 ?>
