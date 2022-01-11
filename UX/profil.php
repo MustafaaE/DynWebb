@@ -104,12 +104,8 @@ if(isset($_POST['submit']))
     <?php showImageInProfile();
     ?>
 
-    
-     
-
 </div>
 <!-- End of container -->
-
 
 </main>
 <script>
@@ -125,6 +121,5 @@ user.innerHTML = id;
 user_id.setAttribute("value", id);
 
 </script>
-</body>
-</html>
+
 <?php require_once "../components/footer.php" ?>
