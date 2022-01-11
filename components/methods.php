@@ -120,7 +120,9 @@ function showPostOnIndex() {
         echo     "</div>";
         echo    "<div class='post__content'>";
         echo    "<div>";
+        echo    "<a href='post.php'>";
         echo        "<img src='  $path '>";
+        echo    "</a>"; 
         echo    "</div>";
         echo    "</div>";
         echo    "<div class='post__footer'>";
