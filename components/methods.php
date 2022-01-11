@@ -1,8 +1,15 @@
 <?php
+require_once "../interface/connection.php";
 session_start();
+
+// isUserLoggedIn();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+$user_id =$_SESSION['user']['user_id'];
+$username = $_SESSION['user']['username'];
 
 function redirectTo($url = null)
 {
@@ -20,7 +27,6 @@ function isUserLoggedIn()
 
 function listProfile()
 {
-    require_once "../interface/connection.php";
     $pdo = connectToDB();
     $statement = $pdo->prepare('SELECT * FROM users WHERE user_id = :user_id');
     $statement->bindParam(':user_id', $_GET['id']);
@@ -32,27 +38,28 @@ function listProfile()
 
 function showImageInProfile()
 {
+    
     $pdo = connectToDB();
-    $stmt = $pdo->prepare('SELECT * FROM posts WHERE user_id = :id');
+    $stmt = $pdo->prepare('SELECT * FROM posts LEFT JOIN users ON posts.user_id = users.user_id WHERE posts.user_id = :id');
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
     $get = $stmt->fetchAll(pdo::FETCH_OBJ);
-    $imagelinkstarter = '/DynWebb/UX/post.php';
+    $imagelinkstarter = 'http://localhost/DynWebb/UX/post.php';
     foreach ($get as $image) {
-        $currentDirectory = "http://localhost";
-        $path =  $currentDirectory . $image->image_file;
+        $currentDirectory = "http://localhost/Dynwebb/Users";
+        $path = $currentDirectory . '/' . $image->username . $image ->image_file;
         echo "<div class=gallery-item tabindex=0>";
-        echo "<a href= '{$currentDirectory}{$imagelinkstarter}?id={$image->post_id}'><img src='$path'class=gallery-image> </a>";
+        echo "<a href= '{$imagelinkstarter}?id={$image->post_id}'><img src='{$path}'class=gallery-image> </a>";
         echo "</div>";
     }
 }
 
 function following()
 {
-    $profileId = $_GET['id']; 
+    $user_id =$_SESSION['user']['user_id'];
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT COUNT(follower_id) FROM following WHERE follower_id = :id');
-    $stmt->bindParam(':id', $profileId);
+    $stmt->bindParam(':id', $user_id);
     $stmt->execute();
     $get = $stmt->fetch();
     print_r($get[0]);
@@ -60,10 +67,10 @@ function following()
 
 function followers()
 {
-    $profileId = $_GET['id']; 
+    $user_id =$_SESSION['user']['user_id'];
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT COUNT(user_id)FROM following WHERE user_id = :id');
-    $stmt->bindValue(':id', $profileId);
+    $stmt->bindValue(':id',$user_id);
     $stmt->execute();
     $get = $stmt->fetch();
     print_r($get[0]);
@@ -105,14 +112,18 @@ function showSuggestedUsers()
 
 
 function ShowPostOnIndex() {
+
     $pdo = connectToDB();
-    $stmt = $pdo->prepare('SELECT * FROM posts WHERE user_id = :id');
-    $stmt->bindParam(':id', $_GET['id']);
-    $stmt->execute();
-    $get = $stmt->fetchall();
+    $user_id =$_SESSION['user']['user_id'];
+    $stmt = $pdo->prepare('SELECT * FROM Users LEFT JOIN following ON users.user_id = following.follower_id 
+    LEFT JOIN Posts ON following.user_id = Posts.user_id WHERE users.user_id = :id');
+    $stmt->bindParam(':id', $user_id);
+    $get = $stmt->fetchAll(pdo::FETCH_OBJ);
     foreach($get as $items) {
-        $currentDirectory = "http://localhost";
-        $path =  $currentDirectory . $items['image_file'];
+        $currentDirectory = "http://localhost/Dynwebb/Users/";
+        $path = $currentDirectory .$items->username . $items ->image_file ;
+        // echo $path;
+        // echo "<br>";
         
         echo "<article class='post'>";
         echo    "<div class='post__header'>";
@@ -120,7 +131,7 @@ function ShowPostOnIndex() {
         echo        "<a href='#' class='post__avatar'>";
         echo         "<img src='../assets/instagram-default-icon.png' alt='User Picture'>";
         echo        "</a>";
-        echo         "<a class='post__user' href='#'>"; username_index(); "</a>"; 
+        echo         "<a class='post__user' href='#'> $items->username  </a>"; 
         echo      "</div>";
         echo     "</div>";
         echo    "<div class='post__content'>";
@@ -148,37 +159,41 @@ function ShowPostOnIndex() {
         echo                '<a href="#" class="post__likes-avatar">';
         echo                    '<img src="../assets/bork.jpg" alt="User Picture">';
         echo                '</a>';
-        echo                "<span>Liked by <a class='post__name--underline' href='#"> print_r($_SESSION['user']['username']);"</a>";  
+        // echo                "<span>Liked by <a class='post__name--underline' href='#"> print_r($_SESSION['user']['username']);"</a>";  
         echo                "<a href='#'>73 others</a></span>";
         echo            "</div>";
         echo            '<div class="post__description">';
         echo            '<span>';
-                                print_r($items['description']);
+                                // print_r($items['description']);
         echo             '</span>';
         echo           '</div>';
         echo        '<span class="post__date-time">1 days ago</span>';
         echo        '</div>';
         echo      '</div>';
         echo '</article>';
-    }
+     }
 }
+
     
 
 function loadPictureSite(){
+
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_id = :id');
-    // $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute( ['id' => $_GET['id']]);
     $get = $stmt->fetch(pdo::FETCH_OBJ);
-        $currentDirectory = "http://localhost";
-        $path =  $currentDirectory . $get->image_file;
-        $description = $get->description;
-        $username = $get->username;
+    $currentDirectory = "http://localhost/Dynwebb/Users";
+    $image =  $get->username;
+    $file = $get->image_file; 
+    $path =  $currentDirectory . '/' . $image  . $file;
+        // $description = $get->description;
+        // $username = $get->username;
     
-    echo        "<img src='  $path ' width= 700px height=600px>";
+    echo        "<img src='$path' width= 700px height=600px>";
    /*  echo         "<p> uploaded by : $username </p>"; */
- /*    echo         "<p> $description </p>"; */
-}   
+    //  echo         "<p> $description </p>"; 
+    }
+
 
 function loadDescriptionSite(){
     $pdo = connectToDB();
@@ -217,4 +232,5 @@ function loadComments(){
 
 
 }
+
 

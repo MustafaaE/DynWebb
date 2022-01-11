@@ -762,7 +762,6 @@ textarea {
 /* General Styles */
 body {
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -805,9 +804,7 @@ img {
 .header__content {
   width: 100%;
   max-width: 975px;
-
   padding: 0 14px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -837,7 +834,6 @@ img {
 .header__search {
   width: 216px;
   height: 28px;
-
   display: none;
   align-items: center;
   position: relative;
@@ -845,7 +841,6 @@ img {
 .header__search svg {
   width: 12px;
   height: 12px;
-
   position: absolute;
   left: 8px;
 }
@@ -853,17 +848,14 @@ img {
   width: 100%;
   height: 100%;
   background-color: var(--secondary);
-
   padding: 4px 10px 4px 28px;
   border: 1px solid var(--border);
   border-radius: 4px;
   outline: none;
-
   font-size: 12px;
   font-weight: 300;
   text-decoration: none;
   color: var(--text-light);
-
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -1093,7 +1085,6 @@ img {
 .post__header {
   background-color: var(--primary);
   border-bottom: 1px solid var(--border);
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1118,7 +1109,6 @@ img {
   bottom: 0;
   left: 0;
   right: 0;
-
   border: 1px solid var(--img-border);
   border-radius: 50%;
 }
@@ -1146,7 +1136,6 @@ img {
   display: flex;
   overflow-y: hidden;
   overflow-x: auto;
-
   width: 100%;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -1187,7 +1176,6 @@ img {
   display: flex;
   align-items: center;
   gap: 4px;
-
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1231,7 +1219,6 @@ img {
   bottom: 0;
   left: 0;
   right: 0;
-
   border: 1px solid var(--img-border);
   border-radius: 50%;
 }
@@ -1280,7 +1267,6 @@ img {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-
   margin-right: 12px;
   flex-shrink: 0;
 
