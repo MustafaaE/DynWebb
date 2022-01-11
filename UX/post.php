@@ -269,6 +269,11 @@ if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
       display: block;
       color: #aaa;
     }
+
+    #comment-time{
+      color: lightgray;
+      font-size: 10px;
+    }
     
     @media only screen and (max-width: 1200px) {
       .gallery-card {

@@ -223,15 +223,10 @@ function loadComments(){
     comments.post_id = posts.post_id WHERE posts.post_id = :id ORDER BY comments.created_time ASC');
     $stmt->execute (['id' => $_GET['id']]);
     $get = $stmt->fetchAll(pdo::FETCH_OBJ);
-    foreach($get as $comments){
-        /* echo "<p> {$comments-> username} : {$comments-> content}' </p>";  */
-        
+    foreach($get as $comments)
+    {
         echo  "<div class='comment'>";
-        echo  " {$comments-> username} : </a><span>{$comments-> content}</span>  <span> time sent:{$comments-> created_time}</span>";
+        echo  " {$comments-> username} : </a><span>{$comments-> content}</span>  <p id='comment-time'>time sent:{$comments-> created_time}</p>";
         echo  "</div>";
     }
-
-
 }
-
-
