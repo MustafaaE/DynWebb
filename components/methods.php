@@ -111,8 +111,6 @@ function ShowPostOnIndex() {
         $currentDirectory = "http://localhost";
         $path =  $currentDirectory . $items['image_file'];
         
-       
-        
         echo "<article class='post'>";
         echo    "<div class='post__header'>";
         echo      "<div class='post__profile'>";
@@ -124,7 +122,9 @@ function ShowPostOnIndex() {
         echo     "</div>";
         echo    "<div class='post__content'>";
         echo    "<div>";
+        echo    "<a href='post.php'>";
         echo        "<img src='  $path '>";
+        echo    "</a>"; 
         echo    "</div>";
         echo    "</div>";
         echo    "<div class='post__footer'>";
