@@ -1,7 +1,8 @@
-<?php 
+<?php
 require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
+//require_once "../components/footer.php";
 isUserLoggedIn();
 
  $user_id =$_SESSION['user']['user_id'];
@@ -25,7 +26,7 @@ isUserLoggedIn();
     <main class="main-container">
         <section class="content-container">
         <div class="content">
-            <?php showPostOnIndex(); ?>
+            <?php ShowPostOnIndex(); ?>
         </div>
 
         </section>
@@ -60,5 +61,6 @@ isUserLoggedIn();
 </section>
     </main>
 
-</body> 
+</body>
 </html>
+<?php require_once "../components/footer.php"?>

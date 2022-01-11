@@ -4,7 +4,6 @@ require_once "../components/header.php";
 require_once "../interface/connection.php";
 isUserLoggedIn();
 $pdo = connectToDB();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,39 +20,21 @@ $pdo = connectToDB();
       <article class="gallery-card">
         <button class="close"><i class="fa fa-times"></i></button>        
         
-        <section class="gallery-image">
-          <button class="more">Show gallery</button>
-        </section>
+        <?php loadPictureSite(); ?>
         <section class="gallery-info">
           
-          <h2 class="gallery-title">Sunday Lunch! 🍔</h2>
-          
           <div class="gallery-author">
-            <img src="https://s.cdpn.io/profiles/user/1454190/80.jpg?1548321854" alt="">
-            <a href="#">Matyáš Teplý</a>
+            <img src="../assets/instagram-default-icon.png" height="50" width="50" alt="">
+            <a href="#"><?php loadUserSite(); ?></a>
           </div>
           
           <p class="gallery-descr">
-            Had a great lunch yesterday at <a href="http://www.seladon.cz/nudleria">Nudleria Pizzeria Seladon</a>, go check it out! 🙌
+            <?php loadDescriptionSite(); ?>
           </p>
           
-          <div class="gallery-actions">
-            <span>
-              <i class="fa fa-heart"></i>
-              1.2k
-            </span>
-            <span>
-              <i class="fa fa-comment"></i>
-              237
-            </span>
-          </div>
           
-          <div class="gallery-tags">
-            <a href="#">#food</a>
-            <a href="#">#lunch</a>
-            <a href="#">#restaurant</a>
-            <a href="#">#fresh</a>
-          </div>
+          
+        
           
           <hr>
           
@@ -62,33 +43,7 @@ $pdo = connectToDB();
               <input id="comment-input" autocomplete="off" maxlength="60" placeholder="Say something nice..">
               <span class="chars-counter"><span id="chars-current">0</span>/60</span>
             </div>
-            <div class="comment">
-              <a>John Doe: </a><span>Looks tasty!</span>
-            </div>
-            <div class="comment">
-              <a>Jiří Šrytr: </a><span>Pěkněj frontend</span>
-            </div>
-            <div class="comment">
-              <a>Martin Pekáč: </a><span>Dal bich sy 👍</span>
-            </div>
-            <div class="comment">
-              <a>Pepik J.: </a><span>Pěkně no...</span>
-            </div>
-            <div class="comment">
-              <a>Martin Teplý: </a><span>Dobrá restaurace! 😂</span>
-            </div>
-            <div class="comment">
-              <a>cepinda.: </a><span>Jinambuv dortík je nej 👌</span>
-            </div>
-            <div class="comment">
-              <a>Jan P.: </a><span>kolik to stojí</span>
-            </div>
-            <div class="comment">
-              <a>Klára P.: </a><span>Jedu tam!</span>
-            </div>
-            <div class="comment">
-              <a>Lucka M.: </a><span>mňam 😋😋😋</span>
-            </div>
+            <?php loadComments(); ?>
             
             <a href="#" class="more-comments">Show more...</a>
           </div>
@@ -98,6 +53,10 @@ $pdo = connectToDB();
       
     </div>
   </div>
+
+  <?php 
+    require_once "../components/footer.php";
+  ?>
   
   <style>
     @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
@@ -203,7 +162,7 @@ $pdo = connectToDB();
     }
     
     .gallery-author img {
-      height: 1em;
+      height: 3em;
       border-radius: 3px;
     }
     

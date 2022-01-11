@@ -1,5 +1,8 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 function redirectTo($url = null)
 {
@@ -30,16 +33,16 @@ function listProfile()
 function showImageInProfile()
 {
     $pdo = connectToDB();
-    $stmt = $pdo->prepare('SELECT image_file FROM posts WHERE user_id = :id');
+    $stmt = $pdo->prepare('SELECT * FROM posts WHERE user_id = :id');
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
     $get = $stmt->fetchAll(pdo::FETCH_OBJ);
-    $imagelinkstarter = '/DynWebb/UX/index.php/';
+    $imagelinkstarter = '/DynWebb/UX/post.php';
     foreach ($get as $image) {
         $currentDirectory = "http://localhost";
         $path =  $currentDirectory . $image->image_file;
         echo "<div class=gallery-item tabindex=0>";
-        echo "<img src='$path'class=gallery-image  href='$currentDirectory' . '$imagelinkstarter'.'$image->post_id'>";
+        echo "<a href= '{$currentDirectory}{$imagelinkstarter}?id={$image->post_id}'><img src='$path'class=gallery-image> </a>";
         echo "</div>";
     }
 }
@@ -99,9 +102,11 @@ function showSuggestedUsers()
 }
 
 
-function showPostOnIndex() {
+
+
+function ShowPostOnIndex() {
     $pdo = connectToDB();
-    $stmt = $pdo->prepare('SELECT image_file, description FROM posts WHERE user_id = :id');
+    $stmt = $pdo->prepare('SELECT * FROM posts WHERE user_id = :id');
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
     $get = $stmt->fetchall();
@@ -158,3 +163,58 @@ function showPostOnIndex() {
     }
 }
     
+
+function loadPictureSite(){
+    $pdo = connectToDB();
+    $stmt = $pdo->prepare('SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_id = :id');
+    // $stmt->bindParam(':id', $_GET['id']);
+    $stmt->execute( ['id' => $_GET['id']]);
+    $get = $stmt->fetch(pdo::FETCH_OBJ);
+        $currentDirectory = "http://localhost";
+        $path =  $currentDirectory . $get->image_file;
+        $description = $get->description;
+        $username = $get->username;
+    
+    echo        "<img src='  $path ' width= 700px height=600px>";
+   /*  echo         "<p> uploaded by : $username </p>"; */
+ /*    echo         "<p> $description </p>"; */
+}   
+
+function loadDescriptionSite(){
+    $pdo = connectToDB();
+    $stmt = $pdo->prepare('SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_id = :id');
+    // $stmt->bindParam(':id', $_GET['id']);
+    $stmt->execute( ['id' => $_GET['id']]);
+    $get = $stmt->fetch(pdo::FETCH_OBJ);
+        $description = $get->description;
+    echo         "<p> $description </p>"; 
+}   
+
+function loadUserSite(){
+    $pdo = connectToDB();
+    $stmt = $pdo->prepare('SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_id = :id');
+    // $stmt->bindParam(':id', $_GET['id']);
+    $stmt->execute( ['id' => $_GET['id']]);
+    $get = $stmt->fetch(pdo::FETCH_OBJ);
+    $username = $get->username;
+    echo         "<p> uploaded by : $username </p>"; 
+}   
+
+
+function loadComments(){
+   $pdo = connectToDB();
+   $stmt = $pdo -> prepare('SELECT * FROM comments LEFT JOIN users ON comments.user_id = users.user_id LEFT JOIN posts
+    ON posts.post_id = comments.post_id WHERE posts.post_id = :id');
+    $stmt->execute (['id' => $_GET['id']]);
+    $get = $stmt->fetchAll(pdo::FETCH_OBJ);
+    foreach($get as $comments){
+        /* echo "<p> {$comments-> username} : {$comments-> content}' </p>";  */
+        
+        echo  "<div class='comment'>";
+        echo  " {$comments-> username} : </a><span>{$comments-> content}</span>";
+        echo  "</div>";
+    }
+
+
+}
+

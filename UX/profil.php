@@ -1,23 +1,40 @@
-<?php 
+<?php
 require_once "../components/methods.php";
 require_once "../components/header.php";
 require_once "../interface/connection.php";
+
 isUserLoggedIn();
-$pdo =connectToDB();
+
+$pdo = connectToDB();
 $stmt = $pdo->prepare("SELECT * FROM users");
 $stmt -> execute();
+
+if(!empty($_POST['follow']) && !empty($_POST['user_id']))
+{
+  $pdo = connectToDB();
+
+  $follow_id = htmlspecialchars($_POST['follow']);
+  $user_id = htmlspecialchars($_POST['user_id']);
+  
+  $stmtfollow = $pdo -> prepare("insert into following(user_id ,follower_id) VALUES (:user_id, :follower_id)");
+  $stmtfollow ->bindValue('user_id', $user_id);
+  $stmtfollow ->bindValue('follower_id', $follow_id);
+  $stmtfollow -> execute();
+}
+
+if(!empty($_POST['unfollow']) && !empty($_POST['user_id']))
+{
+  $pdo = connectToDB();
+
+  $unfollow_id = htmlspecialchars($_POST['unfollow']);
+  $user_id = htmlspecialchars($_POST['user_id']);
+
+  $stmtunfollow = $pdo -> prepare("DELETE FROM following WHERE follower_id=('{$user_id}')");
+  $stmtunfollow -> execute();
+}
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Profile Page</title>
-</head>
-<body>
 <header>
 
 <div>
@@ -38,15 +55,36 @@ $stmt -> execute();
   
     <div class="profile-user-settings">
 
-      <h1 class="profile-user-name"><?php print_r($_SESSION['user']['username']); ?> </h1>
-    
-      
+      <h1 class="profile-user-name"><?php print_r($_SESSION['user']['user_id']); ?> </h1>
     </div>
-          <button class="btn-follow">Följ</button>
-          <buttuon class="btn-hide" hidden>avfölj</buttuon>
+
+<?php
+
+if(isset($_POST['submit']))
+{
+  $hide=2;
+
+  echo <<<TABLEROW
+    <form method="post">
+      <button class="btn-hide">Unfollow</button>
+      <input type="hidden" name="unfollow" value="{$_SESSION['user']['user_id']}">
+      <input type="hidden" name="user_id" id="user_id">
+    </form>
+  TABLEROW;
+}
+?>
+
+<?php if(!isset($hide)) { ?>
+    <form action="" method="post">
+      <input class="btn-follow" type="submit" name="submit" value="Follow">
+      <input type="hidden" name="follow" value="<?php echo $_SESSION['user']['user_id']?>">
+      <input type="hidden" name="user_id" id="user_id">
+    </form>
+<?php }?>
+
     <div class="profile-stats">
       <ul>
-      <li><span class="profile-stat-count"><?php followers(); ?></span> followers</li>
+        <li><span class="profile-stat-count"><?php followers(); ?></span> followers</li>
         <li><span class="profile-stat-count"><?php following(); ?></span> following</li>
       </ul>
     </div>
@@ -68,7 +106,6 @@ $stmt -> execute();
     
      
 
-
 </div>
 <!-- End of container -->
 
@@ -76,14 +113,18 @@ $stmt -> execute();
 </main>
 <script>
 const user = document.querySelector('.profile-user-name');
+const followbtn = document.querySelector('.btn-follow');
+const user_id = document.querySelector('#user_id');
 
-  let url_string = window.location;
-  let url = new URL(url_string);
-  let name = url.searchParams.get("username");
-  let id = url.searchParams.get("user_id");
+let url_string = window.location;
+let url = new URL(url_string);
+let id = url.searchParams.get("id");
 
-user.innerHTML = name;
+user.innerHTML = id;
+
+user_id.setAttribute("value", id);
 
 </script>
 </body>
 </html>
+<?php require_once "../components/footer.php" ?>
