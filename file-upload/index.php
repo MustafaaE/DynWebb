@@ -35,3 +35,7 @@ require '../components/header.php';
 </main>
 </body>
 </html>
+
+<?php 
+require '../components/footer.php';
+?>
