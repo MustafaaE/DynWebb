@@ -234,3 +234,20 @@ function loadComments(){
 
 }
 
+
+if (isset($_POST['submit-comment'])) {
+    $pdo = connectToDB();
+    $user_id =$_SESSION['user']['user_id'];
+    $post_id = $_GET['id'];
+    $comment = $_POST['comment'];
+  
+    $stmt = $pdo->prepare('INSERT INTO comments (content,user_id,post_id) VALUES (:comment,:user_id,:post_id)');
+    $stmt->bindValue('comment', $comment);
+    $stmt->bindValue('user_id', $user_id);
+    $stmt->bindValue('post_id', $post_id);
+    try {
+      $stmt->execute();
+    } catch(PDOException $e) {
+      echo $e->getMessage();
+    }
+  }

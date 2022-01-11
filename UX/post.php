@@ -5,20 +5,23 @@ require_once "../interface/connection.php";
 isUserLoggedIn();
 $pdo = connectToDB();
 
+$user_id =$_SESSION['user']['user_id'];
+$username = $_SESSION['user']['username'];
 
 if (isset($_POST['submit-comment'])) {
-  $connect = connectToDB();
-  
+  $user_id =$_SESSION['user']['user_id'];
+  $post_id = $_GET['id'];
   $comment = $_POST['comment'];
 
-  $stmt = $connect->prepare('INSERT INTO comments (content) VALUES (:comment)');
-  $stmt->bindParam('comment', $comment);
+  $stmt = $pdo->prepare('INSERT INTO comments (content,user_id,post_id) VALUES (:comment,:user_id,:post_id)');
+  $stmt->bindValue('comment', $comment);
+  $stmt->bindValue('user_id', $user_id);
+  $stmt->bindValue('post_id', $post_id);
   try {
     $stmt->execute();
   } catch(PDOException $e) {
     echo $e->getMessage();
   }
-  header( "refresh:1;url=http://localhost/dynwebb/" );
 }
 
 ?>
@@ -50,7 +53,7 @@ if (isset($_POST['submit-comment'])) {
   
           
           <div class="gallery-comments">
-            <form  method="POST">
+            <form method="POST">
               <div class="comment-add">
                 <input name="comment" id="comment-input" autocomplete="off" maxlength="60" placeholder="Say something nice..">
                 <button name="submit-comment">Submit</button>
