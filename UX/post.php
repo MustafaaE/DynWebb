@@ -4,6 +4,24 @@ require_once "../components/header.php";
 require_once "../interface/connection.php";
 isUserLoggedIn();
 $pdo = connectToDB();
+
+
+if (isset($_POST['submit-comment'])) {
+  $connect = connectToDB();
+  
+  $comment = $_POST['comment'];
+
+  $stmt = $connect->prepare('INSERT INTO comments (content) VALUES (:comment)');
+  $stmt->bindParam('comment', $comment);
+  $stmt->bindParam('id', $_GET['id']);
+  try {
+    $stmt->execute();
+  } catch(PDOException $e) {
+    echo $e->getMessage();
+  }
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +37,6 @@ $pdo = connectToDB();
       
       <article class="gallery-card">
         <button class="close"><i class="fa fa-times"></i></button>        
-        
         <?php loadPictureSite(); ?>
         <section class="gallery-info">
           
@@ -31,21 +48,16 @@ $pdo = connectToDB();
           <p class="gallery-descr">
             <?php loadDescriptionSite(); ?>
           </p>
-          
-          
-          
-        
-          
-          <hr>
+  
           
           <div class="gallery-comments">
-            <div class="comment-add">
-              <input id="comment-input" autocomplete="off" maxlength="60" placeholder="Say something nice..">
-              <span class="chars-counter"><span id="chars-current">0</span>/60</span>
+            <form  method="POST">
+              <div class="comment-add">
+                <input name="comment" id="comment-input" autocomplete="off" maxlength="60" placeholder="Say something nice..">
+                <button name="submit-comment">Submit</button>
+              </form>
             </div>
             <?php loadComments(); ?>
-            
-            <a href="#" class="more-comments">Show more...</a>
           </div>
           
         </section>
