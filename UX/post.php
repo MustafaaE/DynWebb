@@ -46,10 +46,11 @@ if (isset($_POST['submit-comment'])) {
           <hr>
           
           <div class="gallery-comments">
-            <div class="comment-add">
-              <input id="comment-input" autocomplete="off" maxlength="60" placeholder="Say something nice..">
-              <span class="chars-counter"><span id="chars-current">0</span>/60</span>
-            </div>
+          <form  method="POST">
+              <div class="comment-add">
+                <input name="comment" id="comment-input" autocomplete="off" maxlength="60" placeholder="Say something nice..">
+                <button name="submit-comment">Submit</button>
+              </form>
             <?php loadComments(); ?>
             
             <a href="#" class="more-comments">Show more...</a>

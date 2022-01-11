@@ -37,11 +37,3 @@ require '../components/header.php';
 </body>
 
 </html>
-
-
-
-<?php
-
-require '../components/footer.php';
-
-?>

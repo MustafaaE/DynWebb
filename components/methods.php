@@ -38,10 +38,10 @@ function listProfile()
 
 function showImageInProfile()
 {
-    $user_id =$_SESSION['user']['user_id'];
+    
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT * FROM posts LEFT JOIN users ON posts.user_id = users.user_id WHERE posts.user_id = :id');
-    $stmt->bindParam(':id', $user_id);
+    $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
     $get = $stmt->fetchAll(pdo::FETCH_OBJ);
     $imagelinkstarter = 'http://localhost/DynWebb/UX/post.php';
@@ -116,9 +116,8 @@ function ShowPostOnIndex() {
     $pdo = connectToDB();
     $user_id =$_SESSION['user']['user_id'];
     $stmt = $pdo->prepare('SELECT * FROM Users LEFT JOIN following ON users.user_id = following.follower_id 
-    LEFT JOIN Posts ON following.user_id = Posts.user_id WHERE users.user_id = :id AND ');
+    LEFT JOIN Posts ON following.user_id = Posts.user_id WHERE users.user_id = :id');
     $stmt->bindParam(':id', $user_id);
-    $stmt->execute();
     $get = $stmt->fetchAll(pdo::FETCH_OBJ);
     foreach($get as $items) {
         $currentDirectory = "http://localhost/Dynwebb/Users/";
@@ -235,19 +234,3 @@ function loadComments(){
 }
 
 
-if (isset($_POST['submit-comment'])) {
-    $pdo = connectToDB();
-    $user_id =$_SESSION['user']['user_id'];
-    $post_id = $_GET['id'];
-    $comment = $_POST['comment'];
-  
-    $stmt = $pdo->prepare('INSERT INTO comments (content,user_id,post_id) VALUES (:comment,:user_id,:post_id)');
-    $stmt->bindValue('comment', $comment);
-    $stmt->bindValue('user_id', $user_id);
-    $stmt->bindValue('post_id', $post_id);
-    try {
-      $stmt->execute();
-    } catch(PDOException $e) {
-      echo $e->getMessage();
-    }
-  }
