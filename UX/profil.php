@@ -114,7 +114,6 @@ if(isset($_POST['submit']))
 </main>
 <script>
 const user = document.querySelector('.profile-user-name');
-const followbtn = document.querySelector('.btn-follow');
 const user_id = document.querySelector('#user_id');
 
 let url_string = window.location;

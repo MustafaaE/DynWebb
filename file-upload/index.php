@@ -16,6 +16,10 @@ require '../components/header.php';
 
 <main>
 
+    <form enctype="multipart/form-data"  action="./upload.php" method="post">
+
+<main>
+
     <form id="form" enctype="multipart/form-data"  action="./upload.php" method="post">
         <div>
             <label for="file">Select a file:</label>

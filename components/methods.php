@@ -1,8 +1,12 @@
 <?php
 session_start();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+$user_id =$_SESSION['user']['user_id'];
+$username = $_SESSION['user']['username'];
 
 function redirectTo($url = null)
 {
@@ -49,7 +53,8 @@ function showImageInProfile()
 
 function following()
 {
-    $profileId = $_GET['id']; 
+    $profileId = $_SESSION['id'];
+
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT COUNT(follower_id) FROM following WHERE follower_id = :id');
     $stmt->bindParam(':id', $profileId);
@@ -60,7 +65,8 @@ function following()
 
 function followers()
 {
-    $profileId = $_GET['id']; 
+    $profileId = $_SESSION['id'];
+
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT COUNT(user_id)FROM following WHERE user_id = :id');
     $stmt->bindValue(':id', $profileId);
