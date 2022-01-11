@@ -9,6 +9,7 @@ $pdo = connectToDB();
 $stmt = $pdo->prepare("SELECT * FROM users");
 $stmt -> execute();
 
+
 if(!empty($_POST['follow']) && !empty($_POST['user_id']))
 {
   $pdo = connectToDB();
@@ -29,7 +30,7 @@ if(!empty($_POST['unfollow']) && !empty($_POST['user_id']))
   $unfollow_id = htmlspecialchars($_POST['unfollow']);
   $user_id = htmlspecialchars($_POST['user_id']);
 
-  $stmtunfollow = $pdo -> prepare("DELETE FROM following WHERE user_id=('{$user_id}')");
+  $stmtunfollow = $pdo -> prepare("DELETE FROM following WHERE user_id=('{$user_id}') AND follower_id =('{$unfollow_id}') ");
   $stmtunfollow -> execute();
 }
 
@@ -113,7 +114,6 @@ if(isset($_POST['submit']))
 </main>
 <script>
 const user = document.querySelector('.profile-user-name');
-const followbtn = document.querySelector('.btn-follow');
 const user_id = document.querySelector('#user_id');
 
 let url_string = window.location;
