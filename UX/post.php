@@ -25,20 +25,12 @@ if (isset($_POST['submit-comment'])) {
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
   <div class="wrapper">
     <div class="container">
       
       <article class="gallery-card">
         <button class="close"><i class="fa fa-times"></i></button>        
+        
         <?php loadPictureSite(); ?>
         <section class="gallery-info">
           
@@ -50,16 +42,17 @@ if (isset($_POST['submit-comment'])) {
           <p class="gallery-descr">
             <?php loadDescriptionSite(); ?>
           </p>
-  
+          
+          <hr>
           
           <div class="gallery-comments">
-            <form method="POST">
-              <div class="comment-add">
-                <input name="comment" id="comment-input" autocomplete="off" maxlength="60" placeholder="Say something nice..">
-                <button name="submit-comment">Submit</button>
-              </form>
+            <div class="comment-add">
+              <input id="comment-input" autocomplete="off" maxlength="60" placeholder="Say something nice..">
+              <span class="chars-counter"><span id="chars-current">0</span>/60</span>
             </div>
             <?php loadComments(); ?>
+            
+            <a href="#" class="more-comments">Show more...</a>
           </div>
           
         </section>
