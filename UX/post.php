@@ -8,21 +8,22 @@ $pdo = connectToDB();
 $user_id =$_SESSION['user']['user_id'];
 $username = $_SESSION['user']['username'];
 
-if (isset($_POST['submit-comment'])) {
-  $user_id =$_SESSION['user']['user_id'];
-  $post_id = $_GET['id'];
-  $comment = $_POST['comment'];
+if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
 
-  $stmt = $pdo->prepare('INSERT INTO comments (content,user_id,post_id) VALUES (:comment,:user_id,:post_id)');
-  $stmt->bindValue('comment', $comment);
-  $stmt->bindValue('user_id', $user_id);
-  $stmt->bindValue('post_id', $post_id);
-  try {
-    $stmt->execute();
-  } catch(PDOException $e) {
-    echo $e->getMessage();
+    $user_id =$_SESSION['user']['user_id'];
+    $comment = htmlspecialchars($_POST['comment']);
+    $post_id = htmlspecialchars($_POST['post-id']);
+
+    $stmt = $pdo->prepare('INSERT INTO comments (content,user_id,post_id) VALUES (:comment,:user_id,:post_id)');
+  
+    $stmt->bindValue('comment', $comment);
+    $stmt->bindValue('user_id', $user_id);
+    $stmt->bindValue('post_id', $post_id);
+    $stmt -> execute();
+  
+   header("Location: ../UX/post.php?id=$post_id");
+  
   }
-}
 
 ?>
   <div class="wrapper">
@@ -46,10 +47,19 @@ if (isset($_POST['submit-comment'])) {
           <hr>
           
           <div class="gallery-comments">
-          <form  method="POST">
+
+          <form  method="post">
+
               <div class="comment-add">
+
                 <input name="comment" id="comment-input" autocomplete="off" maxlength="60" placeholder="Say something nice..">
-                <button name="submit-comment">Submit</button>
+
+                <input type="hidden" name="post-id" value="<?php echo $post_id = $_GET['id']; ?>">
+
+                <input type="submit" value="Submit">
+
+                </div>
+
               </form>
             <?php loadComments(); ?>
             
