@@ -18,7 +18,7 @@ if (isset($_POST['submit-comment'])) {
   } catch(PDOException $e) {
     echo $e->getMessage();
   }
-  header( "refresh:1;url=http://localhost/dynwebb/" );
+  /* header( "refresh:1;url=http://localhost/dynwebb/" ); */
 }
 
 ?>
@@ -79,7 +79,6 @@ if (isset($_POST['submit-comment'])) {
     }
     
     a {
-      color: #039BE5;
       text-decoration: none;
     }
     
