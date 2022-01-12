@@ -1404,9 +1404,9 @@ img {
   overflow: hidden;
   white-space: nowrap;
 }
-.side-menu__suggestion-info a:hover {
+/* .side-menu__suggestion-info a:hover {
   text-decoration: underline;
-}
+} */
 .side-menu__suggestion-info span {
   font-size: 12px;
   font-weight: 400;
@@ -1686,9 +1686,9 @@ img {
   font-family: "Amatic SC", cursive;
   font-size: 20px;
 }
-.footer-nav > li > a:hover {
+/* .footer-nav > li > a:hover {
   text-decoration: underline;
-}
+} */
 .footer-cont {
   display: flex;
   flex-direction: column;
