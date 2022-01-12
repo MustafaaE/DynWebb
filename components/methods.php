@@ -115,15 +115,13 @@ function ShowPostOnIndex() {
 
     $pdo = connectToDB();
     $user_id =$_SESSION['user']['user_id'];
-    $stmt = $pdo->prepare('SELECT * FROM Users LEFT JOIN following ON users.user_id = following.follower_id 
-    LEFT JOIN Posts ON following.user_id = Posts.user_id WHERE users.user_id = :id');
-    $stmt->bindParam(':id', $user_id);
-    $get = $stmt->fetchAll(pdo::FETCH_OBJ);
-    foreach($get as $items) {
+    $stmt = $pdo->prepare('SELECT * FROM Users LEFT JOIN posts ON users.user_id = posts.user_id 
+    LEFT JOIN following ON following.user_id = Posts.user_id WHERE following.follower_id = :id');
+    $stmt->execute([':id' => $user_id]);
+    $get = $stmt->fetchAll();
+     foreach($get as $items) {
         $currentDirectory = "http://localhost/Dynwebb/Users/";
-        $path = $currentDirectory .$items->username . $items ->image_file ;
-        // echo $path;
-        // echo "<br>";
+        $path = $currentDirectory .$items['username'] . $items['image_file'] ;
         
         echo "<article class='post'>";
         echo    "<div class='post__header'>";
@@ -131,7 +129,7 @@ function ShowPostOnIndex() {
         echo        "<a href='#' class='post__avatar'>";
         echo         "<img src='../assets/instagram-default-icon.png' alt='User Picture'>";
         echo        "</a>";
-        echo         "<a class='post__user' href='#'> $items->username  </a>"; 
+        echo         "<a class=post__user href=#> $items[username] </a>"; 
         echo      "</div>";
         echo     "</div>";
         echo    "<div class='post__content'>";
@@ -159,20 +157,18 @@ function ShowPostOnIndex() {
         echo                '<a href="#" class="post__likes-avatar">';
         echo                    '<img src="../assets/bork.jpg" alt="User Picture">';
         echo                '</a>';
-        // echo                "<span>Liked by <a class='post__name--underline' href='#"> print_r($_SESSION['user']['username']);"</a>";  
+        echo                "<span>Liked by <a class='post__name--underline' href='#"> print_r($_SESSION['user']['username']);"</a>";  
         echo                "<a href='#'>73 others</a></span>";
         echo            "</div>";
         echo            '<div class="post__description">';
-        echo            '<span>';
-                                // print_r($items['description']);
-        echo             '</span>';
+        echo            "<span> $items[description] </span>";
         echo           '</div>';
         echo        '<span class="post__date-time">1 days ago</span>';
         echo        '</div>';
         echo      '</div>';
         echo '</article>';
      }
-}
+    }
 
     
 
@@ -223,15 +219,10 @@ function loadComments(){
     comments.post_id = posts.post_id WHERE posts.post_id = :id ORDER BY comments.created_time ASC');
     $stmt->execute (['id' => $_GET['id']]);
     $get = $stmt->fetchAll(pdo::FETCH_OBJ);
-    foreach($get as $comments){
-        /* echo "<p> {$comments-> username} : {$comments-> content}' </p>";  */
-        
+    foreach($get as $comments)
+    {
         echo  "<div class='comment'>";
-        echo  " {$comments-> username} : </a><span>{$comments-> content}</span>  <span> time sent:{$comments-> created_time}</span>";
+        echo  " {$comments-> username} : </a><span>{$comments-> content}</span>  <p id='comment-time'>time sent:{$comments-> created_time}</p>";
         echo  "</div>";
     }
-
-
 }
-
-

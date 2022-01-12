@@ -468,14 +468,32 @@ img {
   font-weight: 600;
 }
 
-/* Gallery Section */
+@supports (display: grid) {
+  .profile {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(3, auto);
+    grid-column-gap: 3rem;
+    align-items: center;
+  }
 
-.gallery {
-  display: flex;
+  .profile-image {
+    grid-row: 1 / -1;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2rem;
+  }
+}
+
+/*** Gallery ***/
+/*   display: flex;
   flex-wrap: wrap;
   margin: -1rem -1rem;
   padding-bottom: 3rem;
-}
+} */
 
 .gallery-item {
   position: relative;
