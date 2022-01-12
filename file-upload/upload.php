@@ -47,9 +47,13 @@ if(isset($_FILES['image_file'])) {
 
     if(!in_array($fileExtension,$fileTypeAllowed)) {
         $errors[] = "File type not allowed. Please use JPG or PNG file";
+        redirectTo("file-upload/index.php");
+        
     }
     if($fileSize > MAX_SIZE){
         $errors[] = "File size must be under 5 MB";
+        redirectTo("file-upload/index.php");
+        
     }
     if(empty($errors) == true) {
         $uploaded = move_uploaded_file($fileTmpName,$uploadPath);
@@ -62,6 +66,7 @@ if(isset($_FILES['image_file'])) {
         } 
     //    redirect_with_message('upload successfully');
     } else {
+        redirectTo("file-upload/index.php");
         print_r($errors);
     }
 

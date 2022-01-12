@@ -202,7 +202,8 @@ function loadUserSite(){
 
 function loadComments(){
    $pdo = connectToDB();
-   $stmt = $pdo -> prepare('SELECT comments.content , comments.created_time, comments.comment_id, users.username, comments.user_id FROM comments INNER JOIN users ON 
+   $stmt = $pdo -> prepare('SELECT comments.content, comments.created_time, comments.comment_id, users.username, comments.user_id 
+     FROM comments INNER JOIN users ON 
     comments.user_id = users.user_id INNER JOIN posts ON
     comments.post_id = posts.post_id WHERE posts.post_id = :id AND isVisible=1 ORDER BY comments.created_time ASC');
     $stmt->execute (['id' => $_GET['id']]);
@@ -211,7 +212,7 @@ function loadComments(){
     {
         echo  "<div class='comment'>";
         echo  "<span class = 'user-commenter'>{$comments-> username} :</span> <span class='user-comment'>{$comments-> content}</span>";
-        if($_SESSION['user']['user_id'] == $comments ->user_id ){
+        if($_SESSION['user']['user_id'] == $comments ->user_id ||  $_SESSION['user']['user_id']  ){
         echo  "<form id='comment-form' method='post'> <input type='submit' name='hide' value='x'> <input type='hidden' name='comment_id'
         value='{$comments -> comment_id}'> <input type='hidden' name='post_id' value='{$_GET['id']}'> <input type='hidden' name='user_id' value='{$comments -> user_id}'> </form>";
         }
