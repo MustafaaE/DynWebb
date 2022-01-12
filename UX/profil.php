@@ -7,8 +7,8 @@ isUserLoggedIn();
 
 $pdo = connectToDB();
 $stmt = $pdo->prepare("SELECT * FROM users");
-$stmt -> execute();
-
+$getUsers = $stmt -> execute();
+$currentProfile =$_GET['id'];
 
 if(!empty($_POST['follow']) && !empty($_POST['user_id']))
 {
@@ -38,11 +38,6 @@ if(!empty($_POST['unfollow']) && !empty($_POST['user_id']))
 
 <header>
 
-<div>
-  <?php 
-  get_all();
-  ?>
-</div>
 <div class="container">
   <div class="profile">
 
@@ -52,19 +47,32 @@ if(!empty($_POST['unfollow']) && !empty($_POST['user_id']))
 
     </div>
 
-    <?php  print_r($_SESSION['user']['user_id']); ?>
+    <?php echo "<span class='profile-user-name'>{$_SESSION['user']['user_id']}</span>" ?>
   
     <div class="profile-user-settings">
 
-      <h1 class="profile-user-name"><?php print_r($_SESSION['user']['user_id']); ?> </h1>
+      <h2 class= "profile-username"><?php 
+      $getUsers = $stmt->fetchAll();
+      foreach($getUsers as $currentUser){
+        if($currentUser['user_id'] == $currentProfile){
+           print_r($currentUser['username']); 
+        }
+      }?> </h2>
     </div>
 
 <?php
 
-if(isset($_POST['submit']))
-{
-  $hide=2;
-
+  $pdo = connectToDB();
+  $follow_id = $_SESSION['user']['user_id'];
+  $user_id = $_GET['id'];
+  $stmt = $pdo -> prepare("SELECT COUNT(user_id) AS usercount FROM following WHERE user_id = :user_id AND follower_id = :follower_id");
+  $stmt->bindValue(':user_id', $user_id);
+  $stmt ->bindValue(':follower_id', $follow_id);
+  $stmt->execute();
+  $get = $stmt->fetch();
+  //$isFollowing =  $get;
+  
+  if($get['usercount'] == 1){
   echo <<<TABLEROW
     <form method="post">
       <button class="btn-hide">Unfollow</button>
@@ -72,16 +80,20 @@ if(isset($_POST['submit']))
       <input type="hidden" name="user_id" id="user_id">
     </form>
   TABLEROW;
-}
-?>
-
-<?php if(!isset($hide)) { ?>
+} else {
+  echo <<<TABLEROW
     <form  method="post">
-      <input class="btn-follow" type="submit" name="submit" value="Follow">
-      <input type="hidden" name="follow" value="<?php echo $_SESSION['user']['user_id']?>">
+    TABLEROW;
+     if(($_SESSION['user']['user_id'] != $user_id)){
+      echo "<input class='btn-follow' type='submit' name='submit' value='Follow'>";}   
+      echo <<<TABLEROW
+      <input type="hidden" name="follow" value="{$_SESSION['user']['user_id']}">
       <input type="hidden" name="user_id" id="user_id">
     </form>
-<?php }?>
+  TABLEROW;
+   }
+
+?>
 
     <div class="profile-stats">
       <ul>
