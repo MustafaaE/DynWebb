@@ -138,9 +138,9 @@ function ShowPostOnIndex() {
         echo      "</div>";
         echo     "</div>";
         echo    "<div class='post__content'>";
-        echo    "<div>";
+        echo    "<div id='post__content-img'>";
         echo    "<a href='$sumlink'>";
-        echo        "<img src='  $path ' width='100%' height='100%' >";
+        echo        "<img id='post__content-img' src='$path'>";
         echo    "</a>"; 
         echo    "</div>";
         echo    "</div>";
@@ -184,7 +184,7 @@ function loadDescriptionSite(){
     $stmt->execute( ['id' => $_GET['id']]);
     $get = $stmt->fetch(pdo::FETCH_OBJ);
         $description = $get->description;
-    echo         "<p> $description </p>"; 
+    echo "<p class='gallery-descr'> $description </p>"; 
 }   
 
 function loadUserSite(){
@@ -195,8 +195,8 @@ function loadUserSite(){
     $get = $stmt->fetch(pdo::FETCH_OBJ);
     $username = $get->username;
     $time = $get->created_time;
-    echo         "<span> uploaded by : $username </span>"; 
-    echo         "<span> uploaded by : $time </span>";
+    echo "<span>$username ";
+    echo "<p id='comment-time'>at : $time</p></span>";
 }   
 
 

@@ -32,12 +32,7 @@ $pdo = connectToDB();
                     <h2>Suggestions for You</h2>
                 </div>
 
-                <?php 
-                
-                showSuggestedUsers();
-                
-
-                ?>
+                <?php showSuggestedUsers(); ?>
                 </div>
         </section>
     </main>

@@ -42,21 +42,6 @@ body {
   font-weight: 400;
 }
 
-.credit {
-  color: #222222;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-/* * * * * Login CSS * * * * */
-h2 {
-  position: relative;
-  margin: 0 0 15px 0;
-  padding-bottom: 10px;
-  font-size: 22px;
-  font-weight: 700;
-}
-
 p {
   margin: 0 0 20px 0;
   text-align: left;
@@ -175,7 +160,16 @@ p {
 /* REGISTER */
 /*******************/
 body {
-  text-align: center;
+text-align:center;
+min-height:100vh;
+display:flex;
+flex-direction: column;
+overflow-y:auto;
+font-family:"Open Sans",Arial,sans-serif;
+min-height:100vh;
+background-color:#fafafa;
+color:#262626;
+padding-bottom:3rem;
 }
 
 .register-wrapper {
@@ -332,22 +326,10 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
   box-sizing: border-box;
 }
 
-body {
-  font-family: "Open Sans", Arial, sans-serif;
-  min-height: 100vh;
-  background-color: #fafafa;
-  color: #262626;
-  padding-bottom: 3rem;
-}
-
-img {
-  display: block;
-}
-
 .container {
-  max-width: 93.5rem;
-  margin: 0 auto;
-  padding: 0 2rem;
+max-width:93.5rem;
+margin:0 auto;
+padding:0 2rem 10px 0;
 }
 
 .btn {
@@ -409,11 +391,11 @@ img {
 }
 
 .profile-user-name {
-  display: inline-block;
-  font-size: 1rem;
-  font-weight: 300;
-  color: #000;
-  display: none;
+display:inline-block;
+font-size:1rem;
+font-weight:300;
+color:#000;
+display:none;
 }
 
 .profile-edit-btn {
@@ -943,17 +925,8 @@ img {
   padding: 16px 0;
   flex-shrink: 0;
 
-  position: relative;
-  overflow: hidden;
-}
-.stories::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-
-  width: 100%;
-  height: 1px;
-  background-color: var(--border);
+svg {
+display:block;
 }
 .stories__content {
   display: flex;
@@ -963,11 +936,9 @@ img {
   padding: 0 16px;
   position: relative;
 
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-.stories__content::-webkit-scrollbar {
-  display: none;
+img {
+display:block;
+max-width: 100%;
 }
 
 .posts {
@@ -1132,26 +1103,14 @@ img {
 }
 
 .post__content {
-  display: flex;
-  position: relative;
+display:flex;
+/*justify-content: center;*/
+position: relative;
 }
-.post__medias {
-  display: flex;
-  overflow-y: hidden;
-  overflow-x: auto;
+
+#post__content-img{
+  height: fit-content;
   width: 100%;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-.post__medias::-webkit-scrollbar {
-  display: none;
-}
-.post__media {
-  width: 100%;
-  flex: none;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .post__footer {

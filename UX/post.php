@@ -47,12 +47,10 @@ if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
           
           <div class="gallery-author">
             <img src="../assets/instagram-default-icon.png" height="50" width="50" alt="">
-            <a href="#"><?php loadUserSite(); ?></a>
+            <?php loadUserSite(); ?>
           </div>
           
-          <p class="gallery-descr">
             <?php loadDescriptionSite(); ?>
-          </p>
           
           <hr>
           
@@ -188,15 +186,14 @@ if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
       font-size: 26px;
     }
     
+    .gallery-author{
+      display: grid;
+      grid-template-columns: 15% 85%;
+    }
+
     .gallery-author img {
       height: 3em;
       border-radius: 3px;
-    }
-    
-    .gallery-author a {
-      font-size: 16px;
-      vertical-align: top;
-      margin-left: 4px;
     }
     
     .gallery-descr {
@@ -248,6 +245,10 @@ if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
       color: #aaa;
     }
     
+    .comment{
+      margin: 0;
+    }
+
     .comment-add {
       display: block;
       margin-bottom: 20px;
@@ -264,27 +265,14 @@ if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
     }
     
     .user-commenter {
-      margin-top: 8px;
       font-size: 15px;
+      font-weight: bold;
       color: black;
-      margin:0;
     }
     .user-comment {
-        margin-top: 8px;
       font-size: 15px;
-      color: red;
-      margin:0;
+      color: darkslategrey;
     }
-    /* .comment p {
-      margin: 0;
-      color: black;
-    }
-    
-    .comment a {
-      font-weight: bold;
-      cursor: pointer;
-    } */
-    
     .more-comments {
       margin-top: 15px;
       display: block;
@@ -301,7 +289,7 @@ if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
       justify-content: flex-end;
       margin-top: -17px;
     }
-    
+
     @media only screen and (max-width: 1200px) {
       .gallery-card {
         height: auto;
