@@ -97,10 +97,6 @@ if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
       text-decoration: none;
     }
     
-    a:hover {
-      text-decoration: underline;
-    }
-    
     hr {
       border: none;
       border-top: 1px dotted #aaa;

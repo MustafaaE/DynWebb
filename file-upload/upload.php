@@ -48,26 +48,20 @@ if(isset($_FILES['image_file'])) {
     if(!in_array($fileExtension,$fileTypeAllowed)) {
         $errors[] = "File type not allowed. Please use JPG or PNG file";
         redirectTo("file-upload/index.php");
+        print_r($errors);
         
-    }
-    if($fileSize > MAX_SIZE){
+    } else if($fileSize > MAX_SIZE){
         $errors[] = "File size must be under 5 MB";
         redirectTo("file-upload/index.php");
-        
-    }
-    if(empty($errors) == true) {
+        print_r($errors); 
+    } else {
         $uploaded = move_uploaded_file($fileTmpName,$uploadPath);
-        echo "Success";
         try {
             $statement -> execute();
             redirectTo("file-upload/index.php");
+            echo "Success";
         } catch (PDOException $e) {
             var_dump($e ->getMessage());
-        } 
-    //    redirect_with_message('upload successfully');
-    } else {
-        redirectTo("file-upload/index.php");
-        print_r($errors);
+        }
     }
-
-} 
+}
