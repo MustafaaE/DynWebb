@@ -57,7 +57,6 @@ h2 {
   font-weight: 700;
 }
 
-
 p {
   margin: 0 0 20px 0;
   text-align: left;
@@ -411,9 +410,10 @@ img {
 
 .profile-user-name {
   display: inline-block;
-  font-size: 3.2rem;
+  font-size: 1rem;
   font-weight: 300;
-  color: black;
+  color: #000;
+  display: none;
 }
 
 .profile-edit-btn {
