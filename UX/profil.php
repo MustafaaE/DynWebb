@@ -75,6 +75,7 @@ if(isset($_POST['submit']))
 }
 ?>
 
+
 <?php if(!isset($hide)) { ?>
     <form  method="post">
       <input class="btn-follow" type="submit" name="submit" value="Follow">
