@@ -25,6 +25,16 @@ if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
   
   }
 
+  if(!empty($_POST['hide']))
+  {
+    $comment_id = htmlspecialchars($_POST['comment_id']);
+    $post_id = htmlspecialchars($_POST['post_id']);
+    $user_id = htmlspecialchars($_POST['user_id']);
+
+    $stmt = $pdo -> prepare("UPDATE comments SET isVisible=0 WHERE comment_id=('{$comment_id}') AND post_id=('{$post_id}') AND user_id=('{$user_id}')");
+    $stmt -> execute();
+  }
+
 ?>
   <div class="wrapper">
     <div class="container">
@@ -258,6 +268,9 @@ if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
       margin-top: 8px;
       font-size: 15px;
     }
+    .comment p{
+      margin: 0;
+    }
     
     .comment a {
       font-weight: bold;
@@ -273,6 +286,12 @@ if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
     #comment-time{
       color: lightgray;
       font-size: 10px;
+    }
+
+    #comment-form{
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -17px;
     }
     
     @media only screen and (max-width: 1200px) {
