@@ -202,21 +202,27 @@ function loadUserSite(){
 
 function loadComments(){
    $pdo = connectToDB();
-   $stmt = $pdo -> prepare('SELECT comments.content, comments.created_time, comments.comment_id, users.username, comments.user_id 
-     FROM comments INNER JOIN users ON 
+//    $pdo2 = connectToDB();
+   $blabla = $_SESSION['user']['user_id'];
+   $stmt = $pdo -> prepare('SELECT comments.content, comments.created_time, comments.comment_id, users.username, comments.user_id AS commenteruserid,
+    posts.post_id, posts.user_id AS postuserid FROM comments INNER JOIN users ON 
     comments.user_id = users.user_id INNER JOIN posts ON
     comments.post_id = posts.post_id WHERE posts.post_id = :id AND isVisible=1 ORDER BY comments.created_time ASC');
     $stmt->execute (['id' => $_GET['id']]);
     $get = $stmt->fetchAll(pdo::FETCH_OBJ);
-    foreach($get as $comments)
-    {
+    // $statement2 = $pdo2->prepare('SELECT posts.post_id FROM USERS INNER JOIN posts ON users.user_id = posts.user_id WHERE users.user_id = :id');
+    // $statement2->execute (['id' => $blabla]);
+    // $get2 = $statement2->fetchAll(pdo::FETCH_OBJ);
+
+    foreach($get as $comments) {
         echo  "<div class='comment'>";
-        echo  "<span class = 'user-commenter'>{$comments-> username} :</span> <span class='user-comment'>{$comments-> content}</span>";
-        if($_SESSION['user']['user_id'] == $comments ->user_id ||  $_SESSION['user']['user_id']  ){
+        echo  "<span class = 'user-commenter'>{$comments->username} :</span> <span class='user-comment'>{$comments->content}</span>";
+        if($_SESSION['user']['user_id'] == $comments->commenteruserid || $blabla  == $comments->postuserid ){
         echo  "<form id='comment-form' method='post'> <input type='submit' name='hide' value='x'> <input type='hidden' name='comment_id'
-        value='{$comments -> comment_id}'> <input type='hidden' name='post_id' value='{$_GET['id']}'> <input type='hidden' name='user_id' value='{$comments -> user_id}'> </form>";
+        value='{$comments -> comment_id}'> <input type='hidden' name='post_id' value='{$_GET['id']}'> <input type='hidden' name='user_id' value='{$comments-> commenteruserid}'> </form>";
         }
+    }
         echo  "<p id='comment-time'>time sent:{$comments-> created_time}</p>";
         echo  "</div>";
     }
-}
+
