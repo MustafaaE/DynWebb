@@ -263,18 +263,27 @@ if(!empty($_POST['comment']) && !empty($_POST['post-id'])) {
       border-radius: 3px;
     }
     
-    .comment {
+    .user-commenter {
       margin-top: 8px;
       font-size: 15px;
+      color: black;
+      margin:0;
     }
-    .comment p{
+    .user-comment {
+        margin-top: 8px;
+      font-size: 15px;
+      color: red;
+      margin:0;
+    }
+    /* .comment p {
       margin: 0;
+      color: black;
     }
     
     .comment a {
       font-weight: bold;
       cursor: pointer;
-    }
+    } */
     
     .more-comments {
       margin-top: 15px;

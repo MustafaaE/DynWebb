@@ -16,10 +16,6 @@ if(!empty($_GET['search']))
     $search = htmlspecialchars($_GET['search']);
 }
 
-function get_all() {
-    /* DETTA SKA HÄMTA DINA EGNA BILDER från database, HUR MÅNGA FÖLJARE MAN HAR, HUR MÅNGA MAN FÖLJER */
-}
-
 ?>
 
 <!DOCTYPE html>

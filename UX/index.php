@@ -6,8 +6,8 @@ isUserLoggedIn();
 
 $user_id =$_SESSION['user']['user_id'];
 $username = $_SESSION['user']['username'];
-print_r($user_id);
-print_r($username);
+
+echo "Currently logged in as: $username";
 $pdo = connectToDB(); 
 ?>
 

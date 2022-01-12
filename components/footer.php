@@ -8,10 +8,10 @@
   <div>
     <h3 class="footer-header">Quick links</h3>
     <nav class="footer-nav">
-        <li><a href="../UX/index.php">Home</a></li>
-        <li><a href="../UX/profil.php?id=<?php echo $user_id; ?> "> Profile </a></li>
-        <li><a href="../file-upload/index.php">Upload</a></li>
-        <li><a href="../interface/logout.php">Log out</a></li>
+    <li><a href="../UX/index.php?id=<?php echo $user_id; ?> ">Home</a></li>
+            <li><a href="../UX/profil.php?id=<?php echo $user_id; ?> "> Profile </a></li>
+            <li><a href="../file-upload/index.php">Upload</a></li>
+            <li><a href="../interface/logout.php">Log out</a></li>
     </nav>
    </div>
 

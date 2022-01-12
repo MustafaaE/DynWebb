@@ -57,16 +57,6 @@ h2 {
   font-weight: 700;
 }
 
-h2::after {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: 0;
-  width: 30px;
-  height: 2px;
-  background: #666666;
-}
-
 p {
   margin: 0 0 20px 0;
   text-align: left;
