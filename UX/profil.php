@@ -9,6 +9,7 @@ $pdo = connectToDB();
 $stmt = $pdo->prepare("SELECT * FROM users");
 $getUsers = $stmt -> execute();
 $currentProfile =$_GET['id'];
+$testar = $_SESSION['user']['user_id'];
 
 if(!empty($_POST['follow']) && !empty($_POST['user_id']))
 {
@@ -70,7 +71,6 @@ if(!empty($_POST['unfollow']) && !empty($_POST['user_id']))
   $stmt ->bindValue(':follower_id', $follow_id);
   $stmt->execute();
   $get = $stmt->fetch();
-  //$isFollowing =  $get;
   
   if($get['usercount'] == 1){
   echo <<<TABLEROW
@@ -101,9 +101,7 @@ if(!empty($_POST['unfollow']) && !empty($_POST['user_id']))
         <li><span class="profile-stat-count"><?php following(); ?></span> following</li>
       </ul>
     </div>
-    <!-- End of profile section -->
   </div>
-<!-- End of container -->
 </header>
 
 <main>
@@ -112,12 +110,10 @@ if(!empty($_POST['unfollow']) && !empty($_POST['user_id']))
 
   <div class="gallery">
 
-    <!-- <div class="gallery-item" tabindex="0"> -->
     <?php showImageInProfile();
     ?>
 
 </div>
-<!-- End of container -->
 
 </main>
 <script>

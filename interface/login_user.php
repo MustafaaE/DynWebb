@@ -20,7 +20,7 @@ if(!password_verify($password, $user['password'])) {
   redirectTo('UX/login.php');
 };
 
- $_SESSION['user'] = $user;
+$_SESSION['user'] = $user;
 echo $_SESSION['user'];
 redirectTo('UX/index.php?id=' . $_SESSION['user']['user_id']);
 
