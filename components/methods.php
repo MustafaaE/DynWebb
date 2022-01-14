@@ -2,7 +2,6 @@
 require_once "../interface/connection.php";
 session_start();
 
-// isUserLoggedIn();
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -27,7 +26,7 @@ function isUserLoggedIn()
 function listProfile()
 {
     $pdo = connectToDB();
-    $statement = $pdo->prepare('SELECT * FROM users WHERE user_id = :user_id');
+    $statement = $pdo->prepare('SELECT user_id FROM users WHERE user_id = :user_id');
     $statement->bindParam(':user_id', $_GET['id']);
     var_dump($_GET['id']);
     $statement->execute();
@@ -57,7 +56,6 @@ function showImageInProfile()
 function following()
 {
     $currentProfile =$_GET['id'];
-    $user_id =$_SESSION['user']['user_id'];
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT COUNT(follower_id) FROM following WHERE follower_id = :id');
     $stmt->bindParam(':id', $currentProfile);
@@ -69,7 +67,6 @@ function following()
 function followers()
 {
     $currentProfile =$_GET['id'];
-    $user_id =$_SESSION['user']['user_id'];
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT COUNT(user_id)FROM following WHERE user_id = :id');
     $stmt->bindValue(':id',$currentProfile);
@@ -83,10 +80,8 @@ function username_index()
 {
     $userid = $_SESSION['user']['user_id'];
     $pdo = connectToDB();
-
     $stmt = $pdo->prepare('SELECT * FROM users INNER JOIN posts ON users.user_id = posts.user_id WHERE users.user_id = :user_id');
     $stmt->execute(['user_id' => $userid]);
-
     $user = $stmt->fetch();
     print_r($user['username']);
 
@@ -168,19 +163,13 @@ function loadPictureSite(){
     $image =  $get->username;
     $file = $get->image_file; 
     $path =  $currentDirectory . '/' . $image  . $file;
-        // $description = $get->description;
-        // $username = $get->username;
-    
     echo        "<img src='$path' width= 700px height=600px>";
-   /*  echo         "<p> uploaded by : $username </p>"; */
-    //  echo         "<p> $description </p>"; 
     }
 
 
 function loadDescriptionSite(){
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_id = :id');
-    // $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute( ['id' => $_GET['id']]);
     $get = $stmt->fetch(pdo::FETCH_OBJ);
         $description = $get->description;
@@ -190,7 +179,6 @@ function loadDescriptionSite(){
 function loadUserSite(){
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_id = :id');
-    // $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute( ['id' => $_GET['id']]);
     $get = $stmt->fetch(pdo::FETCH_OBJ);
     $username = $get->username;

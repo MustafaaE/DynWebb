@@ -11,9 +11,9 @@ $pdo = connectToDB();
 $stmt = $pdo -> prepare('SELECT * FROM users');
 $stmt -> execute();
 
-if(!empty($_GET['search']))
+if(!empty($_POST['search']))
 {
-    $search = htmlspecialchars($_GET['search']);
+    $search = htmlspecialchars($_POST['search']);
 }
 
 ?>
@@ -37,13 +37,13 @@ if(!empty($_GET['search']))
             <li><a href="../interface/logout.php">Log out</a></li>
         </nav>
 
-        <form action="" method="get">
+        <form action="" method="POST">
                 <input id="search" type="text" name="search" placeholder="Search">
                 <input id="submit" type="submit" value="🔍">
         </form>
     </div>
 <?php
-if(!empty($_GET['search']))
+if(!empty($_POST['search']))
 {
     echo <<<TABLEROW
     <table>
