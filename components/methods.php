@@ -13,7 +13,7 @@ $username = $_SESSION['user']['username'];
 function redirectTo($url = null)
 {
     $url = $url ?? '';
-    header("Location: http://localhost/DynWebb/$url");
+    header("Location: http://localhost/projektarbete-webbproduction/$url");
     exit;
 }
 
@@ -37,7 +37,7 @@ function listProfile()
 
 function showImageInProfile()
 {
-    
+
     $pdo = connectToDB();
     $stmt = $pdo->prepare('SELECT * FROM posts LEFT JOIN users ON posts.user_id = users.user_id WHERE posts.user_id = :id
     ORDER BY created_time DESC');
@@ -117,7 +117,7 @@ function ShowPostOnIndex() {
 
     $pdo = connectToDB();
     $user_id =$_SESSION['user']['user_id'];
-    $stmt = $pdo->prepare('SELECT * FROM Users LEFT JOIN posts ON users.user_id = posts.user_id 
+    $stmt = $pdo->prepare('SELECT * FROM Users LEFT JOIN posts ON users.user_id = posts.user_id
     LEFT JOIN following ON following.user_id = Posts.user_id WHERE following.follower_id = :id ORDER BY created_time DESC');
     $stmt->execute([':id' => $user_id]);
     $get = $stmt->fetchAll();
@@ -127,21 +127,21 @@ function ShowPostOnIndex() {
         $sumlink = $c . $getid;
         $currentDirectory = "http://localhost/Dynwebb/Users/";
         $path = $currentDirectory .$items['username'] . $items['image_file'] ;
-        
+
         echo "<article class='post'>";
         echo    "<div class='post__header'>";
         echo      "<div class='post__profile'>";
         echo        "<a href='#' class='post__avatar'>";
         echo         "<img src='../assets/instagram-default-icon.png' alt='User Picture'>";
         echo        "</a>";
-        echo         "<a class=post__user href=#> $items[username] </a>"; 
+        echo         "<a class=post__user href=#> $items[username] </a>";
         echo      "</div>";
         echo     "</div>";
         echo    "<div class='post__content'>";
         echo    "<div id='post__content-img'>";
         echo    "<a href='$sumlink'>";
         echo        "<img id='post__content-img' src='$path'>";
-        echo    "</a>"; 
+        echo    "</a>";
         echo    "</div>";
         echo    "</div>";
         echo    "<div class='post__footer'>";
@@ -156,7 +156,7 @@ function ShowPostOnIndex() {
      }
     }
 
-    
+
 
 function loadPictureSite(){
 
@@ -166,14 +166,14 @@ function loadPictureSite(){
     $get = $stmt->fetch(pdo::FETCH_OBJ);
     $currentDirectory = "http://localhost/Dynwebb/Users";
     $image =  $get->username;
-    $file = $get->image_file; 
+    $file = $get->image_file;
     $path =  $currentDirectory . '/' . $image  . $file;
         // $description = $get->description;
         // $username = $get->username;
-    
+
     echo        "<img src='$path' width= 700px height=600px>";
    /*  echo         "<p> uploaded by : $username </p>"; */
-    //  echo         "<p> $description </p>"; 
+    //  echo         "<p> $description </p>";
     }
 
 
@@ -184,8 +184,8 @@ function loadDescriptionSite(){
     $stmt->execute( ['id' => $_GET['id']]);
     $get = $stmt->fetch(pdo::FETCH_OBJ);
         $description = $get->description;
-    echo "<p class='gallery-descr'> $description </p>"; 
-}   
+    echo "<p class='gallery-descr'> $description </p>";
+}
 
 function loadUserSite(){
     $pdo = connectToDB();
@@ -197,19 +197,19 @@ function loadUserSite(){
     $time = $get->created_time;
     echo "<span>$username ";
     echo "<p id='comment-time'>at : $time</p></span>";
-}   
+}
 
 
 function loadComments(){
    $pdo = connectToDB();
    $user= $_SESSION['user']['user_id'];
    $stmt = $pdo -> prepare('SELECT comments.content, comments.created_time, comments.comment_id, users.username, comments.user_id AS commenteruserid,
-    posts.post_id, posts.user_id AS postuserid FROM comments INNER JOIN users ON 
+    posts.post_id, posts.user_id AS postuserid FROM comments INNER JOIN users ON
     comments.user_id = users.user_id INNER JOIN posts ON
     comments.post_id = posts.post_id WHERE posts.post_id = :id AND isVisible=1 ORDER BY comments.created_time ASC');
     $stmt->execute (['id' => $_GET['id']]);
     $get = $stmt->fetchAll(pdo::FETCH_OBJ);
-  
+
     foreach($get as $comments) {
         echo  "<div class='comment'>";
         echo  "<span class = 'user-commenter'>{$comments->username} :</span> <span class='user-comment'>{$comments->content}</span>";
@@ -217,9 +217,8 @@ function loadComments(){
         echo  "<form id='comment-form' method='post'> <input type='submit' name='hide' value='x'> <input type='hidden' name='comment_id'
         value='{$comments -> comment_id}'> <input type='hidden' name='post_id' value='{$_GET['id']}'> <input type='hidden' name='user_id' value='{$comments-> commenteruserid}'> </form>";
         }
-    
+
         echo  "<p id='comment-time'>time sent:{$comments-> created_time}</p>";
         echo  "</div>";
     }
     }
-
