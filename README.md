@@ -1,4 +1,4 @@
-Projektarbete i kursen Dynamiska Webbplatser där vi har byggt en instagramklon. På sidan kan man registrera ett konto och logga in för att få åtkomst till olika funktioner.
+Projektarbete i kursen Dynamiska Webbplatser där vi har byggt en instagramklon med PHP, JS och HTML&CSS. På sidan kan man registrera ett konto och logga in för att få åtkomst till olika funktioner.
 Man kan ladda upp bilder till sin profil, besöka andra profiler, följa andra och även kommentera på deras uppladdade bilder.
 
 För åtkomst till databasen: gå till filen connection.php i mappen interface och ändra på $pdo variabeln så det passar in med din lokala databas. 
